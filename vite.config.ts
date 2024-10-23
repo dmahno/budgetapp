@@ -2,18 +2,13 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import babel from '@rollup/plugin-babel';
-import eslint from 'vite-plugin-eslint';
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production';
   return {
     plugins: [
       react(),
-      isProduction &&
-        eslint({
-          fix: true,
-          cache: true,
-        }),
+
       isProduction &&
         babel({
           plugins: [
