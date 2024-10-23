@@ -22,15 +22,15 @@
   "include": ["src", "vite.config.ts"],
   "exclude": ["node_modules", "dist"],
   "paths": {
-    "@/*": ["src/*"],
-    "@app": ["src/app"],
-    "@entities": ["src/entities"],
-    "@pages": ["src/pages"],
-    "@shared/*": ["src/shared/*"],
-    "@assets/*": ["src/assets/*"],
-    "@styles/*": ["src/styles/*"],
-    "@widgets/*": ["src/widgets/*"],
-    "@features/*": ["src/features/*"]
+    "/*": ["src/*"],
+    "app": ["src/app/*"],
+    "entities": ["src/entities/*"],
+    "pages": ["src/pages"],
+    "shared/*": ["src/shared/*"],
+    "assets/*": ["src/assets/*"],
+    "styles/*": ["src/styles/*"],
+    "widgets/*": ["src/widgets/*"],
+    "features/*": ["src/features/*"]
   },
   "ts-node": {
     "compilerOptions": {

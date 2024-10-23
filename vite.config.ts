@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import babel from '@rollup/plugin-babel';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
   return {
     plugins: [
@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
           plugins: [
             [
               'babel-plugin-styled-components',
-              { displayName: false, pure: true, fileName: false },
+              {displayName: false, pure: true, fileName: false},
             ],
           ],
           babelHelpers: 'bundled',

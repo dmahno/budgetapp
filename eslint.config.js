@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
-  { ignores: ['dist', 'vite.config.ts', 'vitest.config.ts'] },
+  {ignores: ['dist', 'vite.config.ts', 'vitest.config.ts', 'src/types/']},
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -23,10 +23,10 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       ...importPlugin.configs.recommended.rules,
       ...importPlugin.configs.typescript.rules,
-      'import/no-unresolved': [2, { ignore: ['\\.svg$'] }],
+      'import/no-unresolved': [2, {ignore: ['\\.svg$']}],
       'react-refresh/only-export-components': [
         'warn',
-        { allowConstantExport: true },
+        {allowConstantExport: true},
       ],
       'import/order': [
         'error',

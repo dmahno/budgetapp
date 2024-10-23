@@ -1,5 +1,5 @@
 declare module 'vite-plugin-eslint' {
-  import { Plugin } from 'vite';
+  import {Plugin} from 'vite';
 
   interface IESLintPluginOptions {
     fix?: boolean;
