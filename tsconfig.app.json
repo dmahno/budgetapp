@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "noImplicitAny": true,
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM"],
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"],
+  "paths": {
+    "@/*": ["src/*"],
+    "@app": ["src/app"],
+    "@entities": ["src/entities"],
+    "@pages": ["src/pages"],
+    "@shared/*": ["src/shared/*"],
+    "@assets/*": ["src/assets/*"],
+    "@styles/*": ["src/styles/*"],
+    "@widgets/*": ["src/widgets/*"],
+    "@features/*": ["src/features/*"]
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "include": [
+      "./src/**",
+      ".eslintrc.cjs",
+      "babel.config.json",
+      "vite.config.ts"
+    ]
+  }
+}
