@@ -1,0 +1,1 @@
+import{o,l as r}from"./react-vendor-C0w0oIIE.js";import{H as e}from"./Header-BIOM6S-J.js";import"./vendor-CZ5LQzr8.js";import"./ant-design-vendor-BM0zyHvw.js";import"./index-DFBQEpyl.js";const n=o(()=>r.jsxs(r.Fragment,{children:[r.jsx(e,{}),"MainPage"]}));export{n as MainPage};
