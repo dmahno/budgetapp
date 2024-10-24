@@ -6,11 +6,7 @@ import path from 'path';
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
   return {
-    plugins: [
-      react(),
-
-
-    ],
+    plugins: [react()],
 
     resolve: {
       alias: {
