@@ -2,10 +2,17 @@ import {action, makeAutoObservable} from 'mobx';
 import {SHA256} from 'crypto-js';
 import {notification} from 'antd';
 
+import {TImageKeys} from 'shared/assets';
+
 export interface IUserData {
   id: number;
   first_name: string;
-  avatar?: string;
+  avatar: TImageKeys;
+}
+
+function isTImageKey(value: string | null): value is TImageKeys {
+  const validKeys: TImageKeys[] = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'];
+  return validKeys.includes(value as TImageKeys);
 }
 
 class AuthStore {
@@ -14,6 +21,7 @@ class AuthStore {
   loading: boolean = false;
   login: string = '';
   password: string = '';
+  availableImages: TImageKeys[] = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'];
 
   constructor() {
     makeAutoObservable(this);
@@ -28,6 +36,13 @@ class AuthStore {
     this.password = value;
   });
 
+  // я решил затащить логику присваивания аватарок пользователю, при авторизации пользователю присваивается рандомная аватарка
+
+  private getRandomImage = (): TImageKeys => {
+    const randomIndex = Math.floor(Math.random() * this.availableImages.length);
+    return this.availableImages[randomIndex];
+  };
+
   signUp = action((onSuccess: () => void) => {
     this.loading = true;
 
@@ -37,6 +52,9 @@ class AuthStore {
       // так делать категорически нельзя, но мне хотелось сделать авторизацию
       localStorage.setItem('signupLogin', this.login);
       localStorage.setItem('signupPassword', hashedPassword);
+
+      const randomImage = this.getRandomImage();
+      localStorage.setItem('userImage', randomImage);
 
       notification.success({
         message: 'Вы успешно зарегистрировались',
@@ -60,9 +78,17 @@ class AuthStore {
 
       if (storedLogin && storedPassword) {
         if (storedLogin === this.login && storedPassword === hashedPassword) {
+          let userImage = localStorage.getItem('userImage');
+
+          if (!isTImageKey(userImage)) {
+            userImage = this.getRandomImage();
+            localStorage.setItem('userImage', userImage);
+          }
+
           this.user = {
             id: 1,
             first_name: this.login,
+            avatar: userImage as TImageKeys,
           };
           this.isAuthenticated = true;
           localStorage.setItem('authUser', JSON.stringify(this.user));
