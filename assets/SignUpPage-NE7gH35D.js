@@ -1,5 +1,5 @@
 import { o as observer, u as useNavigate, l as jsxRuntimeExports } from "./react-vendor-daDPvq-_.js";
-import { a as authStore, L as LOGIN_PAGE_LINK } from "./index-TlG_X-3H.js";
+import { a as authStore, L as LOGIN_PAGE_LINK } from "./index-CHyRofl2.js";
 import { S as Spin, a as Form, I as Input, B as Button } from "./ant-design-vendor-CPKA6C1c.js";
 import "./vendor-D2zAu1UM.js";
 const SignUpPage = observer(() => {

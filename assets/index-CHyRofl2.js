@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/MainPage-DdX8DPxV.js","assets/react-vendor-daDPvq-_.js","assets/vendor-D2zAu1UM.js","assets/ant-design-vendor-CPKA6C1c.js","assets/Header-BUcdcLvh.js","assets/LoginPage-BQKxkUMd.js","assets/NotFoundPage-Bk82JbWL.js","assets/SignUpPage-Poi-iC9m.js","assets/AimsPage-D6oBAqEg.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/MainPage-Dfj3A7YU.js","assets/react-vendor-daDPvq-_.js","assets/vendor-D2zAu1UM.js","assets/ant-design-vendor-CPKA6C1c.js","assets/Header-BkCS9zxC.js","assets/LoginPage-CYTV8E9l.js","assets/NotFoundPage-Bk82JbWL.js","assets/SignUpPage-NE7gH35D.js","assets/AimsPage-HYZmbkK3.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -42,6 +42,10 @@ import { s as staticMethods } from "./ant-design-vendor-CPKA6C1c.js";
     fetch(link.href, fetchOpts);
   }
 })();
+function isTImageKey(value) {
+  const validKeys = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
+  return validKeys.includes(value);
+}
 class AuthStore {
   constructor() {
     __publicField(this, "user", null);
@@ -49,18 +53,26 @@ class AuthStore {
     __publicField(this, "loading", false);
     __publicField(this, "login", "");
     __publicField(this, "password", "");
+    __publicField(this, "availableImages", ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]);
     __publicField(this, "setLogin", action((value) => {
       this.login = value;
     }));
     __publicField(this, "setPassword", action((value) => {
       this.password = value;
     }));
+    // я решил затащить логику присваивания аватарок пользователю, при авторизации пользователю присваивается рандомная аватарка
+    __publicField(this, "getRandomImage", () => {
+      const randomIndex = Math.floor(Math.random() * this.availableImages.length);
+      return this.availableImages[randomIndex];
+    });
     __publicField(this, "signUp", action((onSuccess) => {
       this.loading = true;
       setTimeout(() => {
         const hashedPassword = cryptoJsExports.SHA256(this.password).toString();
         localStorage.setItem("signupLogin", this.login);
         localStorage.setItem("signupPassword", hashedPassword);
+        const randomImage = this.getRandomImage();
+        localStorage.setItem("userImage", randomImage);
         staticMethods.success({
           message: "Вы успешно зарегистрировались",
           description: "Используйте регистриционные данные для входа"
@@ -77,9 +89,15 @@ class AuthStore {
         const hashedPassword = cryptoJsExports.SHA256(this.password).toString();
         if (storedLogin && storedPassword) {
           if (storedLogin === this.login && storedPassword === hashedPassword) {
+            let userImage = localStorage.getItem("userImage");
+            if (!isTImageKey(userImage)) {
+              userImage = this.getRandomImage();
+              localStorage.setItem("userImage", userImage);
+            }
             this.user = {
               id: 1,
-              first_name: this.login
+              first_name: this.login,
+              avatar: userImage
             };
             this.isAuthenticated = true;
             localStorage.setItem("authUser", JSON.stringify(this.user));
@@ -185,7 +203,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
   });
 };
 const MainPageLazy = reactExports.lazy(async () => __vitePreload(async () => {
-  const { MainPage } = await import("./MainPage-DdX8DPxV.js");
+  const { MainPage } = await import("./MainPage-Dfj3A7YU.js");
   return { MainPage };
 }, true ? __vite__mapDeps([0,1,2,3,4]) : void 0).then(({
   MainPage
@@ -193,7 +211,7 @@ const MainPageLazy = reactExports.lazy(async () => __vitePreload(async () => {
   default: MainPage
 })));
 const LoginPageLazy = reactExports.lazy(async () => __vitePreload(async () => {
-  const { LoginPage } = await import("./LoginPage-BQKxkUMd.js");
+  const { LoginPage } = await import("./LoginPage-CYTV8E9l.js");
   return { LoginPage };
 }, true ? __vite__mapDeps([5,1,2,3]) : void 0).then(({
   LoginPage
@@ -209,7 +227,7 @@ const NotFoundPageLazy = reactExports.lazy(async () => __vitePreload(async () =>
   default: NotFoundPage
 })));
 const SignUpPageLazy = reactExports.lazy(async () => __vitePreload(async () => {
-  const { SignUpPage } = await import("./SignUpPage-Poi-iC9m.js");
+  const { SignUpPage } = await import("./SignUpPage-NE7gH35D.js");
   return { SignUpPage };
 }, true ? __vite__mapDeps([7,1,2,3]) : void 0).then(({
   SignUpPage
@@ -217,7 +235,7 @@ const SignUpPageLazy = reactExports.lazy(async () => __vitePreload(async () => {
   default: SignUpPage
 })));
 const AimsPageLazy = reactExports.lazy(async () => __vitePreload(async () => {
-  const { AimsPage } = await import("./AimsPage-D6oBAqEg.js");
+  const { AimsPage } = await import("./AimsPage-HYZmbkK3.js");
   return { AimsPage };
 }, true ? __vite__mapDeps([8,1,2,3,4]) : void 0).then(({
   AimsPage
