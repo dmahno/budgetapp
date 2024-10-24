@@ -32,7 +32,6 @@ export const SignUpPage = observer(() => {
       navigate(LOGIN_PAGE_LINK);
     });
   };
-  
 
   const onInputLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLogin(e.target.value);

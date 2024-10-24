@@ -14,7 +14,8 @@ class ThemeStore {
   isDark: boolean;
 
   constructor() {
-    this.isDark = localStorage.getItem(THEME_KEY) === THEME_VALUES.dark;
+    const storedTheme = localStorage.getItem(THEME_KEY);
+    this.isDark = storedTheme ? storedTheme === THEME_VALUES.dark : true;
     this.theme = this.isDark ? configDarkTheme : configLightTheme;
     makeAutoObservable(this);
   }
