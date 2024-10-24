@@ -1,0 +1,153 @@
+/* Define default (light) theme variables */
+:root {
+  /* Light Theme Variables */
+  --backgroundColor: #ffffff;
+  --textColor: #333333;
+  --linkColor: #007bff;
+  --buttonBackgroundColor: #007bff;
+  --buttonTextColor: #ffffff;
+
+  /* Ant Design Tokens */
+  --ant-color-primary: #f1ff0b;
+  --ant-color-info: #f1ff0b;
+  --ant-color-bg-base: #ffffff;
+  --ant-color-text-base: #333333;
+  --ant-font-size: 16px;
+  --ant-border-radius: 16px;
+  --ant-color-success: #05fa4a;
+
+  /* Additional Ant Design Component Tokens */
+  /* Button */
+  --ant-btn-primary-color: rgb(39,44,0);
+  --ant-btn-default-border-color: rgb(67,67,67);
+
+  /* Typography */
+  --ant-typography-heading1-font-size: 62px;
+  --ant-typography-heading2-font-size: 48px;
+  --ant-typography-heading3-font-size: 36px;
+  --ant-typography-heading4-font-size: 24px;
+  --ant-typography-title-margin-bottom: 0;
+  --ant-typography-title-margin-top: 0;
+  --ant-typography-font-family-code: 'Logos';
+  --ant-typography-font-weight-strong: 800;
+
+  /* Checkbox */
+  --ant-checkbox-color-white: rgb(39,44,0);
+
+  /* DatePicker */
+  --ant-datepicker-color-text-light-solid: rgb(39,44,0);
+
+  /* Radio */
+  --ant-radio-dot-size: 12px;
+  --ant-radio-radio-size: 24px;
+  --ant-radio-button-solid-checked-color: rgb(39,44,0);
+  --ant-radio-button-checked-bg: rgb(39,44,0);
+  --ant-radio-color-border: rgb(67,67,67);
+  --ant-radio-dot-color-disabled: rgba(0,0,0,0.16);
+
+  /* Select */
+  --ant-select-control-height: 48px;
+  --ant-select-control-height-lg: 58px;
+  --ant-select-control-height-sm: 38px;
+  --ant-select-color-border: rgb(67,67,67);
+  --ant-select-color-primary: rgb(241,255,11);
+  --ant-select-multiple-item-bg: rgba(0,0,0,0.37);
+  --ant-select-color-text-placeholder: rgba(250,250,250,0.8);
+  --ant-select-option-selected-bg: rgb(71,80,5);
+
+  /* Slider */
+  --ant-slider-handle-color: rgb(241,255,11);
+  --ant-slider-dot-border-color: rgb(241,255,11);
+  --ant-slider-dot-active-border-color: rgb(241,255,11);
+  --ant-slider-handle-active-outline-color: rgba(243,255,11,0.23);
+  --ant-slider-track-bg: rgb(241,255,11);
+
+  /* Switch */
+  --ant-switch-handle-bg: rgb(241,255,11);
+  --ant-switch-handle-size: 24px;
+  --ant-switch-track-height: 32px;
+  --ant-switch-track-min-width: 48px;
+  --ant-switch-track-padding: 4px;
+  --ant-switch-inner-min-margin-sm: 6px;
+  --ant-switch-handle-size-sm: 12px;
+  --ant-switch-color-primary: rgb(0,0,0);
+
+  /* Tabs */
+  --ant-tabs-color-text: rgb(250,250,250);
+  --ant-tabs-color-border: rgba(84,84,84,0);
+  --ant-tabs-item-active-color: rgb(255,255,255);
+
+  /* Tag */
+  --ant-tag-color-text-light-solid: rgb(39,44,0);
+}
+
+/* Dark Theme Overrides */
+body.dark-theme {
+  /* Dark Theme Variables */
+  --backgroundColor: #121212;
+  --textColor: #fafafa;
+  --linkColor: #f1ff0b;
+  --buttonBackgroundColor: #f1ff0b;
+  --buttonTextColor: #121212;
+
+  /* Ant Design Tokens */
+  --ant-color-bg-base: #121212;
+  --ant-color-text-base: #fafafa;
+
+  /* Additional Ant Design Component Tokens for Dark Theme */
+  /* Button */
+  --ant-btn-primary-color: rgb(39,44,0);
+  --ant-btn-default-border-color: rgb(67,67,67);
+
+  /* Typography */
+  /* Assuming typography remains the same; adjust if needed */
+
+  /* Checkbox */
+  --ant-checkbox-color-white: rgb(39,44,0);
+
+  /* DatePicker */
+  --ant-datepicker-color-text-light-solid: rgb(39,44,0);
+
+  /* Radio */
+  --ant-radio-dot-size: 12px;
+  --ant-radio-radio-size: 24px;
+  --ant-radio-button-solid-checked-color: rgb(39,44,0);
+  --ant-radio-button-checked-bg: rgb(39,44,0);
+  --ant-radio-color-border: rgb(67,67,67);
+  --ant-radio-dot-color-disabled: rgba(0,0,0,0.16);
+
+  /* Select */
+  --ant-select-control-height: 48px;
+  --ant-select-control-height-lg: 58px;
+  --ant-select-control-height-sm: 38px;
+  --ant-select-color-border: rgb(67,67,67);
+  --ant-select-color-primary: rgb(241,255,11);
+  --ant-select-multiple-item-bg: rgba(0,0,0,0.37);
+  --ant-select-color-text-placeholder: rgba(250,250,250,0.8);
+  --ant-select-option-selected-bg: rgb(71,80,5);
+
+  /* Slider */
+  --ant-slider-handle-color: rgb(241,255,11);
+  --ant-slider-dot-border-color: rgb(241,255,11);
+  --ant-slider-dot-active-border-color: rgb(241,255,11);
+  --ant-slider-handle-active-outline-color: rgba(243,255,11,0.23);
+  --ant-slider-track-bg: rgb(241,255,11);
+
+  /* Switch */
+  --ant-switch-handle-bg: rgb(241,255,11);
+  --ant-switch-handle-size: 24px;
+  --ant-switch-track-height: 32px;
+  --ant-switch-track-min-width: 48px;
+  --ant-switch-track-padding: 4px;
+  --ant-switch-inner-min-margin-sm: 6px;
+  --ant-switch-handle-size-sm: 12px;
+  --ant-switch-color-primary: rgb(0,0,0);
+
+  /* Tabs */
+  --ant-tabs-color-text: rgb(250,250,250);
+  --ant-tabs-color-border: rgba(84,84,84,0);
+  --ant-tabs-item-active-color: rgb(255,255,255);
+
+  /* Tag */
+  --ant-tag-color-text-light-solid: rgb(39,44,0);
+}

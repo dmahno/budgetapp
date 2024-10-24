@@ -1,6 +1,7 @@
 {
   "name": "budget-app",
   "private": true,
+  "SASS_PATH": "./src",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -19,6 +20,7 @@
     "crypto-js": "^4.2.0",
     "mobx": "^6.13.5",
     "mobx-react-lite": "^4.0.7",
+    "rc-util": "^5.43.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0"

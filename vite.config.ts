@@ -1,7 +1,7 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {createStyleImportPlugin, AntdResolve} from 'vite-plugin-style-import';
+// import {createStyleImportPlugin, AntdResolve} from 'vite-plugin-style-import';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -9,9 +9,7 @@ export default defineConfig(({mode}) => {
     plugins: [
       react(),
 
-      createStyleImportPlugin({
-        resolves: [AntdResolve()],
-      }),
+
     ],
 
     resolve: {

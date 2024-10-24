@@ -17,6 +17,7 @@ class ThemeStore {
     const storedTheme = localStorage.getItem(THEME_KEY);
     this.isDark = storedTheme ? storedTheme === THEME_VALUES.dark : true;
     this.theme = this.isDark ? configDarkTheme : configLightTheme;
+    this.applyGlobalStyles();
     makeAutoObservable(this);
   }
 
@@ -27,6 +28,17 @@ class ThemeStore {
       THEME_KEY,
       this.isDark ? THEME_VALUES.dark : THEME_VALUES.light,
     );
+    this.applyGlobalStyles();
+  };
+
+  applyGlobalStyles = () => {
+    if (this.isDark) {
+      document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
+    } else {
+      document.body.classList.add('light-theme');
+      document.body.classList.remove('dark-theme');
+    }
   };
 }
 

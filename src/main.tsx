@@ -7,7 +7,7 @@ import {themeStore} from 'shared/store';
 
 import {App} from './app/App.tsx';
 
-import './index.css';
+import './assets/styles/global.scss';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
