@@ -1,7 +1,7 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import babel from '@rollup/plugin-babel';
+import {createStyleImportPlugin, AntdResolve} from 'vite-plugin-style-import';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -9,19 +9,10 @@ export default defineConfig(({mode}) => {
     plugins: [
       react(),
 
-      isProduction &&
-        babel({
-          plugins: [
-            [
-              'babel-plugin-styled-components',
-              {displayName: false, pure: true, fileName: false},
-            ],
-          ],
-          babelHelpers: 'bundled',
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
-          include: ['src/**/*'],
-        }),
-    ].filter(Boolean),
+      createStyleImportPlugin({
+        resolves: [AntdResolve()],
+      }),
+    ],
 
     resolve: {
       alias: {
@@ -36,9 +27,18 @@ export default defineConfig(({mode}) => {
         features: path.resolve(__dirname, './src/features'),
       },
     },
+
+    css: {
+      modules: {
+        generateScopedName: isProduction
+          ? '[hash:base64:8]'
+          : '[name]__[local]__[hash:base64:5]',
+      },
+    },
+
     build: {
       sourcemap: false,
-      minify: false,
+      minify: true,
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
@@ -55,17 +55,12 @@ export default defineConfig(({mode}) => {
           },
         },
       },
+      assetsDir: 'assets',
+      cssCodeSplit: true,
     },
+
     optimizeDeps: {
-      cacheDir: 'node_modules/.vite_cache',
-      include: [
-        'react',
-        'react-dom',
-        'mobx',
-        'mobx-react-lite',
-        'styled-components',
-        'antd',
-      ],
+      include: ['react', 'react-dom', 'mobx', 'mobx-react-lite', 'antd'],
     },
   };
 });

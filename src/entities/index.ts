@@ -1,1 +1,2 @@
-export {UserProfile} from './UserProfile/UserProfile';
+export {UserWelcome} from './UserWelcome/UserWelcome';
+export {ThemeSwitcher} from './ThemeSwither/ThemeSwither';
