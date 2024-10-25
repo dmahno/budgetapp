@@ -1,12 +1,11 @@
 import {observer} from 'mobx-react-lite';
 
-import {Header} from 'widgets';
+import {FinanceManagmentArea} from 'features';
 
 export const MainPage = observer(() => {
   return (
     <>
-      <Header />
-      MainPage
+      <FinanceManagmentArea />
     </>
   );
 });

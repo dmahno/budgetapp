@@ -1,0 +1,19 @@
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: $indent-s;
+  margin-top: $indent-m;
+}
+
+.amountDisplay {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--sumColor);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

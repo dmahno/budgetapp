@@ -1,11 +1,19 @@
 import {RouteProps} from 'react-router-dom';
 
-import {MainPage, NotFoundPage, LoginPage, SignUpPage, AimsPage} from 'pages';
+import {
+  MainPage,
+  NotFoundPage,
+  LoginPage,
+  SignUpPage,
+  AimsPage,
+  CategoryPage,
+} from 'pages';
 import {
   MAIN_PAGE_LINK,
   SIGNUP_PAGE_LINK,
   LOGIN_PAGE_LINK,
   AIMS_PAGE_LINK,
+  CATEGORY_PAGE_LINK,
 } from 'shared/constants';
 
 type TRoutes =
@@ -13,7 +21,8 @@ type TRoutes =
   | 'mainPage'
   | 'notFound'
   | 'loginPage'
-  | 'aimsPage';
+  | 'aimsPage'
+  | 'category';
 
 export const RoutePath: Record<TRoutes, string> = {
   notFound: '*',
@@ -21,9 +30,11 @@ export const RoutePath: Record<TRoutes, string> = {
   loginPage: LOGIN_PAGE_LINK,
   signUpPage: SIGNUP_PAGE_LINK,
   aimsPage: AIMS_PAGE_LINK,
+  category: CATEGORY_PAGE_LINK,
 };
 
-export const {notFound, mainPage, loginPage, signUpPage, aimsPage} = RoutePath;
+export const {notFound, mainPage, loginPage, signUpPage, aimsPage, category} =
+  RoutePath;
 
 export const routeConfig: Record<
   TRoutes,
@@ -52,5 +63,9 @@ export const routeConfig: Record<
   aimsPage: {
     path: aimsPage,
     element: <AimsPage />,
+  },
+  category: {
+    path: category,
+    element: <CategoryPage />,
   },
 };

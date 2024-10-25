@@ -1,0 +1,25 @@
+.link {
+  display: inline-block;
+  border-radius: 25px;
+  padding: $indent-xs $indent-m;
+  text-decoration: none;
+  color: var(--navItemLinkColor);
+  transition:
+    color 0.2s ease-in,
+    background-color 0.2s ease-in;
+  border: 1px solid transparent;
+
+  &:hover {
+    color: var(--navLinkHoverColor);
+  }
+}
+
+.active {
+  color: var(--navLinkActiveColor);
+  border-color: var(--navItemLinkActiveColorBorder);
+  background-color: var(--navItemLinkActiveColorBG);
+  color: var(--navItemLinkActiveColor);
+  &:hover {
+    color: var(--navLinkHoverActiveColor);
+  }
+}

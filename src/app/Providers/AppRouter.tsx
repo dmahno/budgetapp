@@ -10,6 +10,7 @@ import {
   MAIN_PAGE_LINK,
   LOGIN_PAGE_LINK,
 } from 'shared/constants';
+import {Layout} from 'widgets';
 
 export const AppRouter = observer(() => {
   const {isAuthenticated} = authStore;
@@ -19,6 +20,14 @@ export const AppRouter = observer(() => {
       <Routes>
         {Object.values(routeConfig).map((route) => {
           const {element, path, authorization = true} = route;
+
+          if (
+            !authorization &&
+            !isAuthenticated &&
+            (path === LOGIN_PAGE_LINK || path === SIGNUP_PAGE_LINK)
+          ) {
+            return <Route key={path} path={path} element={element} />;
+          }
 
           if (authorization && !isAuthenticated) {
             return (
@@ -43,7 +52,17 @@ export const AppRouter = observer(() => {
             );
           }
 
-          return <Route key={path} path={path} element={element} />;
+          if (authorization) {
+            return (
+              <Route
+                key={path}
+                path={path}
+                element={<Layout>{element}</Layout>}
+              />
+            );
+          }
+
+          return null;
         })}
 
         <Route path="*" element={<NotFoundPage />} />

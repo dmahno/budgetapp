@@ -23,7 +23,7 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       ...importPlugin.configs.recommended.rules,
       ...importPlugin.configs.typescript.rules,
-      'import/no-unresolved': [2, {ignore: ['\\.svg$']}],
+      'import/no-unresolved': [2, {ignore: ['\\.svg$', '^idb$']}],
       'react-refresh/only-export-components': [
         'warn',
         {allowConstantExport: true},

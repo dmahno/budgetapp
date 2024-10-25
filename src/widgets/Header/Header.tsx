@@ -1,24 +1,16 @@
-import React from 'react';
 import {observer} from 'mobx-react-lite';
 
-import {authStore} from 'shared/store';
-import {images, TImageKeys} from 'shared/assets';
-import {ThemeSwitcher} from 'entities';
+import {NavigationMenu, UserInfo} from 'entities';
+import {Logo} from 'shared/ui';
 
-export const Header: React.FC = observer(() => {
-  const avatarKey = authStore.user?.avatar as TImageKeys;
-  const userAvatar = avatarKey ? images[avatarKey] : '';
+import styles from './Header.module.scss';
 
+export const Header = observer(() => {
   return (
-    <header>
-      {authStore.isAuthenticated && (
-        <>
-          <ThemeSwitcher />
-          {userAvatar && <img src={userAvatar} alt="User Avatar" />}
-          <span>{authStore.user?.userNameInfo}</span>
-          <button onClick={() => authStore.logout()}>Выйти</button>
-        </>
-      )}
+    <header className={styles.header}>
+      <Logo />
+      <NavigationMenu />
+      <UserInfo />
     </header>
   );
 });

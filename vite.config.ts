@@ -1,12 +1,21 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-// import {createStyleImportPlugin, AntdResolve} from 'vite-plugin-style-import';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
   return {
-    plugins: [react()],
+    plugins: [
+      svgr({
+        include: '**/*.svg',
+        svgrOptions: {
+          exportType: 'default',
+        },
+      }),
+      ,
+      react(),
+    ],
 
     resolve: {
       alias: {
@@ -23,6 +32,12 @@ export default defineConfig(({mode}) => {
     },
 
     css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+          additionalData: `@use 'assets/variables/variables' as *;`,
+        },
+      },
       modules: {
         generateScopedName: isProduction
           ? '[hash:base64:8]'

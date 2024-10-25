@@ -1,0 +1,44 @@
+.button {
+  padding: $indent-s;
+  font-size: $text-size-m;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 22px;
+  border-top-left-radius: 12px;
+  cursor: pointer;
+  width: 180px;
+  height: 120px;
+  transition: background-color 0.2s ease;
+  justify-content: space-between;
+
+  &.primary {
+    background-color: var(--buttonPrimaryBackgroundColor);
+    color: var(--buttonPrimaryColor);
+  }
+
+  &.secondary {
+    background-color: var(--buttonSecondaryBackgroundColor);
+    color: var(--buttonSecondaryColor);
+  }
+
+  .iconWrapper {
+    position: absolute;
+    top: $indent-xs;
+    right: $indent-xs;
+    display: flex;
+
+    .iconContainer {
+      color: inherit;
+    }
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  .textWrapper {
+    align-self: flex-start;
+  }
+}
