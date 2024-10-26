@@ -1,10 +1,10 @@
-import {ChangeEvent, FormEvent} from 'react';
+import {ChangeEvent, FormEvent, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
 
 import {authStore} from 'shared/store';
-import {MAIN_PAGE_LINK} from 'shared/constants';
-import {Button, Input} from 'shared/ui';
+import {MAIN_PAGE_LINK, SIGNUP_PAGE_LINK} from 'shared/constants';
+import {Button, Input, ReactRouterCustomLink} from 'shared/ui';
 
 import styles from './AuthForm.module.scss';
 
@@ -13,6 +13,7 @@ export const AuthForm = observer(() => {
     loginAction,
     setLogin,
     setPassword,
+    areFieldsFilled,
     loading,
     password,
     login,
@@ -28,13 +29,26 @@ export const AuthForm = observer(() => {
     });
   };
 
-  const onInputLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setLogin(e.target.value);
-  };
+  const onInputLoginChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setLogin(e.target.value);
+    },
+    [setLogin],
+  );
 
-  const onInputPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
+  const onInputPasswordChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setPassword(e.target.value);
+    },
+    [setPassword],
+  );
+
+  console.log('aas');
+
+  const isFormFilled = areFieldsFilled({
+    login: login,
+    password: password,
+  });
 
   return (
     <div className={styles.formContainer}>
@@ -58,10 +72,21 @@ export const AuthForm = observer(() => {
           onChange={onInputPasswordChange}
         />
 
-        <Button loading={loading} width="full" disabled={loading}>
+        <Button
+          loading={loading}
+          width="full"
+          disabled={loading || !isFormFilled}
+        >
           Войти
         </Button>
       </form>
+
+      <ReactRouterCustomLink
+        className={styles.signUpLink}
+        to={SIGNUP_PAGE_LINK}
+      >
+        У меня нет логина и пароля
+      </ReactRouterCustomLink>
     </div>
   );
 });

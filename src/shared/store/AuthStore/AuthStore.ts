@@ -36,6 +36,7 @@ class AuthStore {
   constructor() {
     makeAutoObservable(this);
     this.loadUser();
+    this.loadUserName();
   }
 
   setLogin = action((value: string) => {
@@ -56,7 +57,6 @@ class AuthStore {
 
   setUserName = action((value: string) => {
     this.userName = value.trimStart();
-    localStorage.setItem('userName', this.userName);
   });
 
   isFormValid = action((): boolean => {
@@ -81,9 +81,15 @@ class AuthStore {
     return storedLogin === this.login;
   });
 
-  areFieldsFilled = action((...fields: string[]): boolean => {
-    return fields.every((field) => field.trim() !== '');
-  });
+  areFieldsFilled<
+    T extends Record<string, string | number | boolean | null | undefined>,
+  >(fields: T): boolean {
+    return Object.values(fields).every((value) => {
+      if (typeof value === 'string') {
+        return value.trim() !== '';
+      }
+    });
+  }
 
   // функция проверки логина на ввода латиницей
   validateLogin = action(() => {
