@@ -1,0 +1,1 @@
+import{o as e,j as r}from"./react-vendor-DNISrPOH.js";import"./vendor-DSzhlL7V.js";import"./ant-design-vendor-niO4Y5v_.js";const m=e(()=>r.jsx(r.Fragment,{children:"AimsPage"}));export{m as AimsPage};

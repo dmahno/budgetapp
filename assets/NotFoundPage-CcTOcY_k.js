@@ -1,1 +1,0 @@
-import{o as r,j as o}from"./react-vendor-CydBeP13.js";import"./vendor-LCbWzvVK.js";import"./ant-design-vendor-Pr8IEzyH.js";const s=r(()=>o.jsx(o.Fragment,{children:"NotFoundPage"}));export{s as NotFoundPage};
