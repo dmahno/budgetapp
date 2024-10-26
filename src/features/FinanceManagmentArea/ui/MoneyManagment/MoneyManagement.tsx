@@ -58,14 +58,15 @@ export const MoneyManagement = observer(() => {
   };
 
   return (
-    <div className={styles.buttons}>
-      <TapButton text="Пополнить" onClick={showAddModal} />
-      <TapButton
-        text="Списать"
-        appearance="secondary"
-        onClick={showExtractModal}
-      />
-
+    <>
+      <div className={styles.buttons}>
+        <TapButton text="Пополнить" onClick={showAddModal} />
+        <TapButton
+          text="Списать"
+          appearance="secondary"
+          onClick={showExtractModal}
+        />
+      </div>
       <Modal
         title={modalType === 'add' ? 'Пополнить счет' : 'Списать средства'}
         open={isModalVisible}
@@ -91,6 +92,6 @@ export const MoneyManagement = observer(() => {
           <Button onClick={incrementSum}>+</Button>
         </div>
       </Modal>
-    </div>
+    </>
   );
 });

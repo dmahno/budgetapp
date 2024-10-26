@@ -2,9 +2,9 @@ import {ThemeConfig} from 'antd';
 
 export const configDarkTheme: ThemeConfig = {
   token: {
-    colorPrimary: '#f1ff0b',
+    colorPrimary: 'var(--primary)',
     colorInfo: '#f1ff0b',
-    colorBgBase: '#121212',
+    colorBgBase: 'var(--backgroundColor)',
     colorTextBase: '#fafafa',
     fontSize: 16,
     borderRadius: 16,

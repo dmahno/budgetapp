@@ -1,0 +1,84 @@
+.switch {
+  width: 66px;
+  height: 32px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50px;
+  padding: 0;
+  margin: 0;
+  background: #e9e9eb;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+
+  &-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &-loading {
+    cursor: progress;
+  }
+
+  .slider {
+    &.switch-checked {
+    }
+
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow:
+      0px 3px 8px rgba(0, 0, 0, 0.15),
+      0px 3px 1px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-out;
+  }
+
+  &-default {
+    .slider {
+      left: 36px;
+      top: 2px;
+    }
+
+    &.switch-checked .slider {
+      left: 2px;
+    }
+  }
+
+  &-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 8px;
+    z-index: 1;
+    color: #888;
+    pointer-events: none;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .icon-light {
+      visibility: visible;
+    }
+
+    .icon-dark {
+      visibility: hidden;
+    }
+
+    .switch-checked & .icon-light {
+      visibility: hidden;
+    }
+
+    .switch-checked & .icon-dark {
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+$spinner-sizes: (
+  s: 24px,
+  m: 56px,
+  l: 80px,
+);
+
+$light-color: #474bff;
+$dark-color: #fff;
+
+.spinner {
+  border-radius: 50%;
+  animation: spinnerAnimation 1s infinite linear;
+
+  &.light {
+    background:
+      radial-gradient(farthest-side, $light-color 94%, transparent) top/9px 9px
+        no-repeat,
+      conic-gradient(transparent 30%, $light-color);
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 9px),
+      #000 0
+    );
+  }
+
+  &.dark {
+    background:
+      radial-gradient(farthest-side, $dark-color 94%, transparent) top/9px 9px
+        no-repeat,
+      conic-gradient(transparent 30%, $dark-color);
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 9px),
+      #000 0
+    );
+  }
+
+  &.s {
+    width: map-get($spinner-sizes, s);
+    height: map-get($spinner-sizes, s);
+
+    &.light {
+      background:
+        radial-gradient(farthest-side, $light-color 94%, transparent) top/5px
+          5px no-repeat,
+        conic-gradient(transparent 20%, $light-color);
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 5px),
+        #000 0
+      );
+    }
+
+    &.dark {
+      background:
+        radial-gradient(farthest-side, $dark-color 94%, transparent) top/5px 5px
+          no-repeat,
+        conic-gradient(transparent 20%, $dark-color);
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 5px),
+        #000 0
+      );
+    }
+  }
+
+  &.m {
+    width: map-get($spinner-sizes, m);
+    height: map-get($spinner-sizes, m);
+  }
+
+  &.l {
+    width: map-get($spinner-sizes, l);
+    height: map-get($spinner-sizes, l);
+  }
+}
+
+@keyframes spinnerAnimation {
+  100% {
+    transform: rotate(1turn);
+  }
+}

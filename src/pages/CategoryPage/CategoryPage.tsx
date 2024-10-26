@@ -1,5 +1,11 @@
 import {observer} from 'mobx-react-lite';
 
+import {Input} from 'shared/ui';
+
 export const CategoryPage = observer(() => {
-  return <>CategoryPage</>;
+  return (
+    <>
+      <Input label="asdasd" />
+    </>
+  );
 });

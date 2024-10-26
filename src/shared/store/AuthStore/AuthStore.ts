@@ -56,6 +56,7 @@ class AuthStore {
 
   setUserName = action((value: string) => {
     this.userName = value.trimStart();
+    localStorage.setItem('userName', this.userName);
   });
 
   isFormValid = action((): boolean => {
@@ -123,6 +124,7 @@ class AuthStore {
 
       const randomImage = this.getRandomImage();
       localStorage.setItem('userImage', randomImage);
+      localStorage.setItem('userName', this.userName);
 
       notification.success({
         message: 'Вы успешно зарегистрировались',
@@ -165,6 +167,11 @@ class AuthStore {
           this.isAuthenticated = true;
           localStorage.setItem('authUser', JSON.stringify(this.user));
 
+          if (storedUserName) {
+            localStorage.setItem('userName', storedUserName);
+            this.userName = storedUserName;
+          }
+
           this.loading = false;
           onSuccess();
         } else {
@@ -196,6 +203,7 @@ class AuthStore {
     localStorage.removeItem('authUser');
     localStorage.removeItem('signupLogin');
     localStorage.removeItem('signupPassword');
+    localStorage.removeItem('userName');
   });
 
   loadUser = action(() => {
@@ -203,6 +211,13 @@ class AuthStore {
     if (storedUser) {
       this.user = JSON.parse(storedUser);
       this.isAuthenticated = true;
+    }
+  });
+
+  loadUserName = action(() => {
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      this.userName = storedUserName;
     }
   });
 }

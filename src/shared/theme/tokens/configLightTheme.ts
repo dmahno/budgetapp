@@ -4,7 +4,7 @@ export const configLightTheme: ThemeConfig = {
   token: {
     colorPrimary: '#f1ff0b',
     colorInfo: '#f1ff0b',
-    colorBgBase: '#121212',
+    // colorBgBase: '#121212',
     colorTextBase: '#fafafa',
     fontSize: 16,
     borderRadius: 16,
@@ -70,6 +70,10 @@ export const configLightTheme: ThemeConfig = {
       colorText: 'rgb(250,250,250)',
       colorBorder: 'rgba(84,84,84,0)',
       itemActiveColor: 'rgb(255,255,255)',
+    },
+    Modal: {
+      colorBgContainer: '#f8f8f8',
+      colorPrimaryBg: '#f8f8f8',
     },
     Tag: {
       colorTextLightSolid: 'rgb(39,44,0)',
