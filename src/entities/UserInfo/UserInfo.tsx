@@ -20,7 +20,7 @@ export const UserInfo = observer(() => {
       <div className={styles.userAvatar}>
         {userAvatar && <img src={userAvatar} alt={`${user?.userNameInfo}`} />}
       </div>
-      <div>{user?.userNameInfo}</div>
+      <div className={styles.userName}>{user?.userNameInfo}</div>
       <Button
         onClick={() => logout()}
         color="default"

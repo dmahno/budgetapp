@@ -1,4 +1,4 @@
-import {action, makeAutoObservable} from 'mobx';
+import {action, makeAutoObservable, runInAction} from 'mobx';
 import {SHA256} from 'crypto-js';
 import {notification} from 'antd';
 
@@ -32,6 +32,7 @@ class AuthStore {
   availableImages: TImageKeys[] = IMAGE_LIST_NAME;
   isLoginInvalid: boolean = false;
   isPasswordInvalid: boolean = false;
+  isWelcome: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -55,6 +56,15 @@ class AuthStore {
     this.validatePassword();
   });
 
+  showWelcome = action(() => {
+    this.isWelcome = true;
+    setTimeout(() => {
+      runInAction(() => {
+        this.isWelcome = false;
+      });
+    }, 5000);
+  });
+
   setUserName = action((value: string) => {
     this.userName = value.trimStart();
   });
@@ -69,16 +79,12 @@ class AuthStore {
   });
 
   validatePassword = action(() => {
-    if (this.password.length > 5) {
-      this.isPasswordInvalid = false;
-    } else {
-      this.isPasswordInvalid = true;
-    }
+    this.isPasswordInvalid = this.password.length <= 5;
   });
 
   checkIfLoginExists = action((): boolean => {
     const storedLogin = localStorage.getItem('signupLogin');
-    return storedLogin === this.login;
+    return storedLogin === SHA256(this.login).toString();
   });
 
   areFieldsFilled<
@@ -88,17 +94,14 @@ class AuthStore {
       if (typeof value === 'string') {
         return value.trim() !== '';
       }
+      return true;
     });
   }
 
   // функция проверки логина на ввода латиницей
   validateLogin = action(() => {
     const latinRegex = /^[A-Za-z]+$/;
-    if (this.login && !latinRegex.test(this.login)) {
-      this.isLoginInvalid = true;
-    } else {
-      this.isLoginInvalid = false;
-    }
+    this.isLoginInvalid = this.login ? !latinRegex.test(this.login) : false;
   });
 
   // я решил затащить логику присваивания аватарок пользователю, при авторизации пользователю присваивается рандомная аватарка
@@ -120,26 +123,28 @@ class AuthStore {
     this.loading = true;
 
     setTimeout(() => {
-      // я использую шифрование пароля, не безопасно вообще, но лучше чем ничего
-      const hashedLogin = SHA256(this.login).toString();
-      const hashedPassword = SHA256(this.password).toString();
-      // так делать категорически нельзя!!! Сделано для задания
-      localStorage.setItem('signupLogin', hashedLogin);
-      localStorage.setItem('signupUserName', this.userName);
-      localStorage.setItem('signupPassword', hashedPassword);
+      runInAction(() => {
+        const hashedLogin = SHA256(this.login).toString();
+        const hashedPassword = SHA256(this.password).toString();
 
-      const randomImage = this.getRandomImage();
-      localStorage.setItem('userImage', randomImage);
-      localStorage.setItem('userName', this.userName);
+        localStorage.setItem('signupLogin', hashedLogin);
+        localStorage.setItem('signupUserName', this.userName);
+        localStorage.setItem('signupPassword', hashedPassword);
 
-      notification.success({
-        message: 'Вы успешно зарегистрировались',
-        description: 'Используйте регистриционные данные для входа',
+        const randomImage = this.getRandomImage();
+        localStorage.setItem('userImage', randomImage);
+        localStorage.setItem('userName', this.userName);
+
+        notification.success({
+          message: 'Вы успешно зарегистрировались',
+          description: 'Используйте регистрационные данные для входа',
+        });
+
+        this.resetForm();
+        onSuccess();
+
+        this.loading = false;
       });
-
-      this.loading = false;
-      this.resetForm();
-      onSuccess();
     }, 2000); // по заданию сказано симулировать запросы
   });
 
@@ -165,34 +170,42 @@ class AuthStore {
             localStorage.setItem('userImage', userImage);
           }
 
-          this.user = {
-            id: 1,
-            userNameInfo: storedUserName,
-            avatar: userImage as TImageKeys,
-          };
-          this.isAuthenticated = true;
+          runInAction(() => {
+            this.user = {
+              id: 1,
+              userNameInfo: storedUserName,
+              avatar: userImage as TImageKeys,
+            };
+            this.isAuthenticated = true;
+            this.loading = false;
+          });
+
           localStorage.setItem('authUser', JSON.stringify(this.user));
-
-          if (storedUserName) {
-            localStorage.setItem('userName', storedUserName);
-            this.userName = storedUserName;
-          }
-
-          this.loading = false;
+          runInAction(() => {
+            if (storedUserName) {
+              localStorage.setItem('userName', storedUserName);
+              this.userName = storedUserName;
+            }
+          });
+          this.showWelcome();
           onSuccess();
         } else {
-          this.loading = false;
+          runInAction(() => {
+            this.loading = false;
+          });
           notification.error({
             message: 'Ошибка в авторизации',
             description:
-              'Не правильно ввели логи или пароль, попробуйте еще раз или пройдите регистрацию',
+              'Неправильно ввели логин или пароль, попробуйте еще раз или пройдите регистрацию.',
           });
         }
       } else {
-        this.loading = false;
+        runInAction(() => {
+          this.loading = false;
+        });
         notification.error({
           message: 'Ошибка в авторизации',
-          description: 'Убедитесь в верности введенных данных',
+          description: 'Убедитесь в верности введенных данных.',
         });
       }
     }, 2000); // по заданию сказано симулировать запросы
@@ -200,6 +213,7 @@ class AuthStore {
 
   logout = action(() => {
     this.isAuthenticated = false;
+    this.isWelcome = false;
     localStorage.removeItem('authUser');
   });
 

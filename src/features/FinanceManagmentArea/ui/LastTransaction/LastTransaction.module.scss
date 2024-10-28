@@ -1,0 +1,59 @@
+.lastTransactionDetails {
+  background-color: #1e1f2a;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  padding: $indent-m $indent-m $indent-xl;
+  position: absolute;
+  width: 100%;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  gap: $indent-m;
+  @include mobile {
+    padding: $indent-s $indent-s $indent-xl;
+  }
+}
+.description {
+  color: white;
+  font-size: 16px;
+}
+.date {
+  font-size: 14px;
+  color: #9d9d9d;
+}
+
+.amount {
+  font-size: 24px;
+  &.add {
+    color: $green;
+    svg {
+      fill: $green;
+    }
+  }
+
+  &.subtract {
+    color: $red;
+    svg {
+      fill: $red;
+    }
+  }
+}
+
+.category {
+  font-size: 14px;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: $indent-3xs;
+}
+
+.iconDescriptionArea {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-3xs;
+}
+
+.iconArea {
+  display: flex;
+  gap: $indent-s;
+}

@@ -6,12 +6,17 @@ import styles from './SumArea.module.scss';
 export const SumArea = observer(() => {
   const {totalSum} = financeStore;
 
+  const formattedSum = totalSum
+    .toFixed(2)
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const [whole, cents] = formattedSum.split('.');
+
   return (
     <div className={styles.sum}>
-      <h1 className={styles.sumTitle}>Мой бюджет</h1>
+      <p className={styles.sumTitle}>Мой бюджет</p>
       <h1 className={styles.totalSum}>
-        {totalSum.toLocaleString()}
-        <span className={styles.cents}> ₽</span>
+        <span>{whole}</span>
+        <span className={styles.cents}>.{cents} ₽</span>
       </h1>
     </div>
   );

@@ -4,23 +4,29 @@
   border: none;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   position: relative;
-  border-radius: 22px;
-  border-top-left-radius: 12px;
+  border-radius: 18px;
+  border-top-left-radius: 10px;
   cursor: pointer;
-  width: 180px;
-  height: 120px;
+  width: 150px;
+  height: 100px;
   transition: background-color 0.2s ease;
-  justify-content: space-between;
 
   &.primary {
     background-color: var(--buttonPrimaryBackgroundColor);
-    color: var(--buttonPrimaryColor);
+    color: var(--buttonPrimaryTextcolor);
+    &:hover {
+      background-color: var(--buttonPrimaryBackgroundColorHover);
+    }
   }
 
   &.secondary {
     background-color: var(--buttonSecondaryBackgroundColor);
-    color: var(--buttonSecondaryColor);
+    color: var(--buttonSecondaryTextcolor);
+    &:hover {
+      background-color: var(--buttonSecondaryBackgroundColorHover);
+    }
   }
 
   .iconWrapper {

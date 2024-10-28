@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react-lite';
 
-import {NavigationMenu, UserInfo} from 'entities';
+import { UserInfo} from 'entities';
 import {Logo} from 'shared/ui';
 
 import styles from './Header.module.scss';
@@ -9,7 +9,7 @@ export const Header = observer(() => {
   return (
     <header className={styles.header}>
       <Logo />
-      <NavigationMenu />
+      {/* <NavigationMenu /> */}
       <UserInfo />
     </header>
   );

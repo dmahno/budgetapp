@@ -1,8 +1,9 @@
 .buttons {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $indent-s;
-  margin-top: $indent-m;
+  margin-top: $indent-xs;
 }
 
 .amountDisplay {

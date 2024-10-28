@@ -1,4 +1,5 @@
-@use './fonts';
+@use 'assets/styles/fonts';
+@use 'assets/styles/mobile';
 @use 'assets/variables/colors';
 
 * {
@@ -9,11 +10,21 @@ html,
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  size: 16px;
   font-family: 'Golos', sans-serif;
   background: var(--backgroundColor);
   color: var(--textColor);
+}
+
+body {
+  min-width: 320px;
+  padding: 0 $indent-s;
+}
+
+@include mobile {
+  body {
+    font-size: 14px;
+  }
 }
 
 h1,

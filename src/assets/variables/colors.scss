@@ -1,18 +1,23 @@
 :root {
-  /* Light Theme Variables */
-  --primary: #ffe500;
+  --primary: #4422ef;
+  --secondary: #aef21e;
 
   --backgroundColor: #fff;
+
   --textColor: #303540;
   --linkColor: #4422ef;
   --iconColor: #303540;
-  --buttonPrimaryColor: #474bff;
+  --buttonPrimaryBackgroundColor: #4422ef;
   --buttonPrimaryTextcolor: #fafafa;
-  --buttonPrimaryColorHover: #0d0d0d;
+  --buttonPrimaryBackgroundColorHover: #2c12b1;
 
-  --buttonPrimaryBackgroundColor: #ffe500;
-  --buttonSecondaryColor: #ffffff;
-  --buttonSecondaryBackgroundColor: #9c32ce;
+  --buttonSecondaryBackgroundColor: #aef21e;
+  --buttonSecondaryTextcolor: #0d0d0d;
+  --buttonSecondaryBackgroundColorHover: #a2e318;
+
+  // --buttonPrimaryBackgroundColor: #ffe500;
+  // --buttonSecondaryColor: #ffffff;
+  // --buttonSecondaryBackgroundColor: #9c32ce;
   --buttonTextColor: #0d0d0d;
   --borderColor: #e8e9ec;
   --borderVerticalSeperator: #626269;
@@ -37,11 +42,12 @@
 /* Dark Theme Overrides */
 body.dark-theme {
   /* Dark Theme Variables */
-  --backgroundColor: #122133;
+  --backgroundColor: #070f18;
+
   --textColor: #fafafa;
   --linkColor: #ffe500;
   --iconColor: #fafafa;
-  --buttonPrimaryBackgroundColor: #ffe500;
+  // --buttonPrimaryBackgroundColor: #ffe500;
   --buttonTextColor: #0d0d0d;
 
   --sumColor: #fafafa;

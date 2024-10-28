@@ -35,7 +35,10 @@ export default defineConfig(({mode}) => {
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
-          additionalData: `@use 'assets/variables/variables' as *;`,
+          additionalData: `
+          @use 'assets/variables/variables' as *;
+          @use 'assets/styles/mixins' as *;
+        `,
         },
       },
       modules: {

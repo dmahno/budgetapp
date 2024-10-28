@@ -1,13 +1,27 @@
+.sum {
+  margin-top: $indent-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .totalSum {
   font-size: 62px;
   color: var(--sumColor);
   font-weight: 700;
+  @include mobile {
+    font-size: 44px;
+  }
 }
 
 .sumTitle {
   color: var(--sumColorSubtitle);
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
+  @include mobile {
+    font-size: 16px;
+  }
 }
 .cents {
   font-size: 36px;

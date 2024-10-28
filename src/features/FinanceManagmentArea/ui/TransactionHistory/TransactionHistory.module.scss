@@ -1,0 +1,67 @@
+.transactionHistoryArea {
+  margin: $indent-xl 0;
+  box-shadow: $boxShadow;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  @include mobile {
+    margin: $indent-m 0;
+  }
+}
+
+.transactionHistory {
+  position: relative;
+  background-color: #fff;
+  margin-top: 92px;
+  padding: $indent-m;
+  border-radius: 24px;
+  z-index: 2;
+  @include mobile {
+    padding: $indent-s;
+  }
+}
+
+.tabs {
+  margin-top: $indent-2xs;
+}
+
+.dateSection {
+  margin-bottom: 24px;
+}
+
+.transactionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 16px;
+}
+
+.transactionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.transactionDetails {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.description {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.description {
+  display: inline-block;
+  max-width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -webkit-line-clamp: 1;
+}

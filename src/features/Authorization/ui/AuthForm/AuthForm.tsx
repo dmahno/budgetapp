@@ -43,50 +43,50 @@ export const AuthForm = observer(() => {
     [setPassword],
   );
 
-  console.log('aas');
-
   const isFormFilled = areFieldsFilled({
     login: login,
     password: password,
   });
 
   return (
-    <div className={styles.formContainer}>
-      <h1 className={styles.formHeader}>
-        Привет{userName ? `, ${userName}` : ''}!
-        <br />
-        Войди в приложение
-      </h1>
-      <form className={styles.form} onSubmit={handleLogin}>
-        <Input
-          label="Логин"
-          autoComplete="none"
-          value={login}
-          onChange={onInputLoginChange}
-        />
-        <Input
-          label="Пароль"
-          autoComplete="none"
-          password
-          value={password}
-          onChange={onInputPasswordChange}
-        />
+    <>
+      <div className={styles.formContainer}>
+        <h1 className={styles.formHeader}>
+          Привет{userName ? `, ${userName}` : ''}!
+          <br />
+          Войди в приложение
+        </h1>
+        <form className={styles.form} onSubmit={handleLogin}>
+          <Input
+            label="Логин"
+            autoComplete="none"
+            value={login}
+            onChange={onInputLoginChange}
+          />
+          <Input
+            label="Пароль"
+            autoComplete="none"
+            password
+            value={password}
+            onChange={onInputPasswordChange}
+          />
 
-        <Button
-          loading={loading}
-          width="full"
-          disabled={loading || !isFormFilled}
+          <Button
+            loading={loading}
+            width="full"
+            disabled={loading || !isFormFilled}
+          >
+            Войти
+          </Button>
+        </form>
+
+        <ReactRouterCustomLink
+          className={styles.signUpLink}
+          to={SIGNUP_PAGE_LINK}
         >
-          Войти
-        </Button>
-      </form>
-
-      <ReactRouterCustomLink
-        className={styles.signUpLink}
-        to={SIGNUP_PAGE_LINK}
-      >
-        У меня нет логина и пароля
-      </ReactRouterCustomLink>
-    </div>
+          У меня нет логина и пароля
+        </ReactRouterCustomLink>
+      </div>
+    </>
   );
 });

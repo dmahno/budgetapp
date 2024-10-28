@@ -1,0 +1,42 @@
+.transactionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $indent-m $indent-s;
+  border-bottom: 1px solid $lightGrey;
+  &:last-child {
+    border: none;
+  }
+}
+
+.transactionDetailLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: $indent-l;
+}
+
+.transactionDetailRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100px;
+  gap: $indent-l;
+}
+
+.transactionDetails {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.amount {
+  font-size: 28px;
+}
+
+.headerTitle {
+  padding: $indent-s;
+  background-color: $lightGrey;
+  border-radius: 12px;
+}

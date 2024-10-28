@@ -1,0 +1,28 @@
+.formContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form {
+    margin-top: $indent-m;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $indent-s;
+  }
+
+  .formHeader {
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .signUpLink {
+    margin-top: 24px;
+  }

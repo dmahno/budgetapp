@@ -40,11 +40,11 @@
 }
 
 .appearance-primary {
-  background-color: var(--buttonPrimaryColor);
-  color: #fff;
+  background-color: var(--buttonPrimaryBackgroundColor);
+  color: var(--buttonPrimaryTextcolor);
 
   &:hover {
-    background-color: var(--buttonPrimaryColorHover);
+    background-color: var(--buttonPrimaryBackgroundColorHover);
   }
 }
 

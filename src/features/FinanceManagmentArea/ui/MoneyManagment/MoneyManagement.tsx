@@ -1,40 +1,63 @@
 import {observer} from 'mobx-react-lite';
 import {useState} from 'react';
-import {Modal, Button, Input, message} from 'antd';
+import {Modal, Button, Input, message, Select} from 'antd';
 
 import {TapButton} from 'shared/ui';
 
+import {categories} from '../../model/constants/categories';
 import {financeStore} from '../../model/store/FinanceStore';
 import styles from './MoneyManagement.module.scss';
+
+const {Option} = Select;
 
 export const MoneyManagement = observer(() => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalType, setModalType] = useState<'add' | 'extract' | null>(null);
   const [sum, setSum] = useState<number>(0);
+  const [category, setCategory] = useState<string>('other');
+  const [description, setDescription] = useState<string>('');
 
   const showAddModal = () => {
     setModalType('add');
     setIsModalVisible(true);
     setSum(0);
+    setCategory('other');
+    setDescription('');
   };
 
   const showExtractModal = () => {
     setModalType('extract');
     setIsModalVisible(true);
     setSum(0);
+    setCategory('other');
+    setDescription('');
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
     if (sum > 0) {
       if (modalType === 'add') {
-        financeStore.addOperation(sum, 'Пополнение', 'add');
+        await financeStore.addOperation(
+          sum,
+          'Пополнение',
+          'add',
+          category,
+          description,
+        );
         message.success(`Сумма ${formatSum(sum)} добавлена`);
       } else if (modalType === 'extract') {
-        financeStore.addOperation(sum, 'Списание', 'exclude');
+        await financeStore.addOperation(
+          sum,
+          'Списание',
+          'exclude',
+          category,
+          description,
+        );
         message.success(`Сумма ${formatSum(sum)} списана`);
       }
       setIsModalVisible(false);
       setSum(0);
+      setCategory('other');
+      setDescription('');
     } else {
       message.error('Пожалуйста, введите корректную сумму');
     }
@@ -43,6 +66,8 @@ export const MoneyManagement = observer(() => {
   const handleCancel = () => {
     setIsModalVisible(false);
     setSum(0);
+    setCategory('other');
+    setDescription('');
   };
 
   const formatSum = (value: number) => {
@@ -55,6 +80,16 @@ export const MoneyManagement = observer(() => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = Number(e.target.value.replace(/\D/g, ''));
     setSum(inputValue);
+  };
+
+  const handleCategoryChange = (value: string) => {
+    setCategory(value);
+  };
+
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setDescription(e.target.value);
   };
 
   return (
@@ -83,6 +118,27 @@ export const MoneyManagement = observer(() => {
           placeholder="Введите сумму"
           onChange={handleInputChange}
           className={styles.inputField}
+        />
+
+        <Select
+          value={category}
+          onChange={handleCategoryChange}
+          className={styles.selectCategory}
+          style={{width: '100%', marginTop: '16px'}}
+        >
+          {categories.map((cat) => (
+            <Option key={cat.value} value={cat.value}>
+              {cat.label}
+            </Option>
+          ))}
+        </Select>
+
+        <Input.TextArea
+          value={description}
+          placeholder="Введите описание"
+          onChange={handleDescriptionChange}
+          className={styles.textareaField}
+          style={{marginTop: '16px'}}
         />
 
         <div className={styles.controls}>
