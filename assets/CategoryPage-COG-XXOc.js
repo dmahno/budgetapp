@@ -1,1 +1,0 @@
-import{o,j as r}from"./react-vendor-BJbwX1Mq.js";import{I as t}from"./index-B1TcJlJC.js";import"./vendor-BrVx_Nsu.js";import"./ant-design-vendor-DPi8yqbB.js";const p=o(()=>r.jsx(r.Fragment,{children:r.jsx(t,{label:"asdasd"})}));export{p as CategoryPage};

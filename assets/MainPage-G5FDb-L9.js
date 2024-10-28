@@ -1,1 +1,0 @@
-import{o,j as r}from"./react-vendor-BJbwX1Mq.js";import{F as t}from"./SignUp-HP3XFlPo.js";import{F as a,a as s}from"./index-B1TcJlJC.js";import"./vendor-BrVx_Nsu.js";import"./ant-design-vendor-DPi8yqbB.js";const x=o(()=>{const{isWelcome:e=!0}=s;return r.jsxs(r.Fragment,{children:[e&&r.jsx(a,{}),r.jsx(t,{})]})});export{x as MainPage};
