@@ -8,5 +8,12 @@ import {Button} from 'shared/ui';
 export const ThemeSwitcher = observer(() => {
   const {isDark, toggleTheme} = themeStore;
 
-  return <Button onClick={toggleTheme} size='s' appearance='thirdly' icon={isDark ? <Dark /> : <Light />} />;
+  return (
+    <Button
+      onClick={toggleTheme}
+      size="s"
+      appearance="thirdly"
+      icon={isDark ? <Dark /> : <Light />}
+    />
+  );
 });

@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react-lite';
 
-import { UserInfo} from 'entities';
+import {UserInfo} from 'entities';
 import {Logo} from 'shared/ui';
 
 import styles from './Header.module.scss';
