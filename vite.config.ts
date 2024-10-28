@@ -4,6 +4,7 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import imp from 'vite-plugin-imp';
 import {visualizer} from 'rollup-plugin-visualizer';
+import {VitePWA} from 'vite-plugin-pwa';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -22,7 +23,7 @@ export default defineConfig(({mode}) => {
         libList: [
           {
             libName: 'antd',
-            style: (name: string) => `antd/es/${name}/style`,
+            style: (name) => `antd/es/${name}/style`,
           },
         ],
       }),
@@ -31,6 +32,34 @@ export default defineConfig(({mode}) => {
           open: true,
           gzipSize: true,
           brotliSize: true,
+        }),
+      isProduction &&
+        VitePWA({
+          registerType: 'autoUpdate',
+          includeAssets: [
+            'favicon.svg',
+            'favicon.ico',
+            'robots.txt',
+            'apple-touch-icon.png',
+          ],
+          manifest: {
+            name: 'Budget App',
+            short_name: 'BudgetApp',
+            description: 'A budget management application.',
+            theme_color: '#ffffff',
+            icons: [
+              {
+                src: 'pwa-192x192.png',
+                sizes: '192x192',
+                type: 'image/png',
+              },
+              {
+                src: 'pwa-512x512.png',
+                sizes: '512x512',
+                type: 'image/png',
+              },
+            ],
+          },
         }),
     ],
     base: baseUrl,
@@ -42,6 +71,8 @@ export default defineConfig(({mode}) => {
     },
     resolve: {
       alias: {
+        react: 'preact/compat',
+        'react-dom': 'preact/compat',
         '@': path.resolve(__dirname, './src'),
         app: path.resolve(__dirname, './src/app'),
         entities: path.resolve(__dirname, './src/entities'),
@@ -76,9 +107,40 @@ export default defineConfig(({mode}) => {
       chunkSizeWarningLimit: 1000,
       assetsDir: 'assets',
       cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              const modules = [
+                'react',
+                'react-dom',
+                'mobx',
+                'mobx-react-lite',
+                'antd',
+              ];
+              for (const module of modules) {
+                if (id.includes(`node_modules/${module}`)) {
+                  return module;
+                }
+              }
+              return 'vendor';
+            }
+          },
+        },
+      },
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', 'mobx', 'mobx-react-lite', 'antd'],
+      include: [
+        'preact/compat',
+        'preact/hooks',
+        'preact',
+        'preact-render-to-string',
+        'react',
+        'react-dom',
+        'mobx',
+        'mobx-react-lite',
+        'antd',
+      ],
     },
   };
 });
