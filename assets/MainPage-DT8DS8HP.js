@@ -1,0 +1,1 @@
+import{aS as r}from"./vendor-eb0ED_yq.js";import{o}from"./mobx-Cgx6VSjm.js";import{F as a}from"./SignUp-DrZAMDlZ.js";import{F as t,a as s}from"./index-CgKxDmib.js";import"./antd-Ca7VNCPK.js";const x=o(()=>{const{isWelcome:e=!0}=s;return r.jsxs(r.Fragment,{children:[e&&r.jsx(t,{}),r.jsx(a,{})]})});export{x as MainPage};

@@ -1,0 +1,1 @@
+import{aS as o}from"./vendor-eb0ED_yq.js";import{o as r}from"./mobx-Cgx6VSjm.js";import{A as t}from"./SignUp-DrZAMDlZ.js";import"./antd-Ca7VNCPK.js";import"./index-CgKxDmib.js";const e=r(()=>o.jsx(t,{}));export{e as LoginPage};
