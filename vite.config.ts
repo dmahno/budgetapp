@@ -16,7 +16,7 @@ export default defineConfig(({mode}) => {
       ,
       react(),
     ],
-    // base: isProduction ? '/budgetapp/' : '/',
+    base: isProduction ? '/budgetapp' : '/',
     server: {
       host: true,
     },
