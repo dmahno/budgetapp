@@ -13,10 +13,9 @@ export default defineConfig(({mode}) => {
           exportType: 'default',
         },
       }),
-      ,
       react(),
     ],
-    base: isProduction ? '/budgetapp' : '/',
+    base: isProduction ? '/budgetapp/' : '/',
     server: {
       host: true,
     },
