@@ -1,0 +1,1 @@
+import{o as r,j as o}from"./react-vendor-BJbwX1Mq.js";import{S as t}from"./SignUp-HP3XFlPo.js";import"./vendor-BrVx_Nsu.js";import"./ant-design-vendor-DPi8yqbB.js";import"./index-B1TcJlJC.js";const n=r(()=>o.jsx(t,{}));export{n as SignUpPage};

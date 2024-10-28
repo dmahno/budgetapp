@@ -1,1 +1,0 @@
-import{o,j as r}from"./react-vendor-DNISrPOH.js";import{A as t}from"./Authorization-CquqVw_a.js";import"./vendor-DSzhlL7V.js";import"./ant-design-vendor-niO4Y5v_.js";import"./index-56AzB_Ea.js";import"./Button-DACnu1e_.js";const n=o(()=>r.jsx(t,{}));export{n as LoginPage};
