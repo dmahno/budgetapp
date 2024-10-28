@@ -76,7 +76,6 @@ export default defineConfig(({mode}) => {
       chunkSizeWarningLimit: 1000,
       assetsDir: 'assets',
       cssCodeSplit: true,
-      
     },
     optimizeDeps: {
       include: [
