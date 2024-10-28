@@ -16,7 +16,10 @@ export default defineConfig(({mode}) => {
       ,
       react(),
     ],
-    base: '/budgetapp/',
+    base: isProduction ? '/budgetapp/' : '/',
+    server: {
+      host: true,
+    },
 
     resolve: {
       alias: {
