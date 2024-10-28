@@ -11,7 +11,7 @@ import './assets/styles/global.scss';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <BrowserRouter>
+      <BrowserRouter basename={__APP_BASE_URL__}>
         <App />
       </BrowserRouter>
     </ErrorBoundary>

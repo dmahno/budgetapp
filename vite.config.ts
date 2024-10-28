@@ -5,6 +5,8 @@ import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
+  const baseUrl = isProduction ? '/budgetapp/' : '/';
+
   return {
     plugins: [
       svgr({
@@ -15,7 +17,10 @@ export default defineConfig(({mode}) => {
       }),
       react(),
     ],
-    base: isProduction ? '/budgetapp/' : '/',
+    base: baseUrl,
+    define: {
+      __APP_BASE_URL__: JSON.stringify(baseUrl),
+    },
     server: {
       host: true,
     },
@@ -52,24 +57,10 @@ export default defineConfig(({mode}) => {
     },
 
     build: {
+      outDir: 'dist',
       sourcemap: false,
       minify: true,
       chunkSizeWarningLimit: 1000,
-      // rollupOptions: {
-      //   output: {
-      //     manualChunks(id) {
-      //       if (id.includes('node_modules')) {
-      //         if (id.includes('react') || id.includes('mobx')) {
-      //           return 'react-vendor';
-      //         }
-      //         if (id.includes('antd') || id.includes('@ant-design')) {
-      //           return 'ant-design-vendor';
-      //         }
-      //         return 'vendor';
-      //       }
-      //     },
-      //   },
-      // },
       assetsDir: 'assets',
       cssCodeSplit: true,
     },
