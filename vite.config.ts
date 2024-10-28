@@ -4,6 +4,7 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig(({mode}) => {
+  base: '/budgetapp/';
   const isProduction = mode === 'production';
   return {
     plugins: [
