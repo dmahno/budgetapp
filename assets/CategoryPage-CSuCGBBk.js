@@ -1,1 +1,0 @@
-import{aS as r}from"./vendor-eb0ED_yq.js";import{o}from"./mobx-Cgx6VSjm.js";import{I as t}from"./index-CgKxDmib.js";import"./antd-Ca7VNCPK.js";const p=o(()=>r.jsx(r.Fragment,{children:r.jsx(t,{label:"asdasd"})}));export{p as CategoryPage};
