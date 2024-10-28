@@ -2,6 +2,8 @@ import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import svgr from 'vite-plugin-svgr';
+import imp from 'vite-plugin-imp';
+import {visualizer} from 'rollup-plugin-visualizer';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -16,6 +18,20 @@ export default defineConfig(({mode}) => {
         },
       }),
       react(),
+      imp({
+        libList: [
+          {
+            libName: 'antd',
+            style: (name: string) => `antd/es/${name}/style`,
+          },
+        ],
+      }),
+      isProduction &&
+        visualizer({
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+        }),
     ],
     base: baseUrl,
     define: {
@@ -24,7 +40,6 @@ export default defineConfig(({mode}) => {
     server: {
       host: true,
     },
-
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
@@ -38,15 +53,14 @@ export default defineConfig(({mode}) => {
         features: path.resolve(__dirname, './src/features'),
       },
     },
-
     css: {
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
           additionalData: `
-          @use 'assets/variables/variables' as *;
-          @use 'assets/styles/mixins' as *;
-        `,
+            @use 'assets/variables/variables' as *;
+            @use 'assets/styles/mixins' as *;
+          `,
         },
       },
       modules: {
@@ -55,16 +69,14 @@ export default defineConfig(({mode}) => {
           : '[name]__[local]__[hash:base64:5]',
       },
     },
-
     build: {
       outDir: 'dist',
       sourcemap: false,
-      minify: true,
+      minify: 'esbuild',
       chunkSizeWarningLimit: 1000,
       assetsDir: 'assets',
       cssCodeSplit: true,
     },
-
     optimizeDeps: {
       include: ['react', 'react-dom', 'mobx', 'mobx-react-lite', 'antd'],
     },
