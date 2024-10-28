@@ -76,27 +76,7 @@ export default defineConfig(({mode}) => {
       chunkSizeWarningLimit: 1000,
       assetsDir: 'assets',
       cssCodeSplit: true,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              const modules = [
-                'preact',
-                'preact/compat',
-                'mobx',
-                'mobx-react-lite',
-                'antd',
-              ];
-              for (const module of modules) {
-                if (id.includes(`node_modules/${module}`)) {
-                  return module;
-                }
-              }
-              return 'vendor';
-            }
-          },
-        },
-      },
+      
     },
     optimizeDeps: {
       include: [
@@ -106,7 +86,7 @@ export default defineConfig(({mode}) => {
         'preact-render-to-string',
         'mobx',
         'mobx-react-lite',
-        'antd'
+        'antd',
       ],
     },
   };
