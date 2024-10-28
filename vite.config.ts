@@ -56,21 +56,21 @@ export default defineConfig(({mode}) => {
       sourcemap: false,
       minify: true,
       chunkSizeWarningLimit: 1000,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('mobx')) {
-                return 'react-vendor';
-              }
-              if (id.includes('antd') || id.includes('@ant-design')) {
-                return 'ant-design-vendor';
-              }
-              return 'vendor';
-            }
-          },
-        },
-      },
+      // rollupOptions: {
+      //   output: {
+      //     manualChunks(id) {
+      //       if (id.includes('node_modules')) {
+      //         if (id.includes('react') || id.includes('mobx')) {
+      //           return 'react-vendor';
+      //         }
+      //         if (id.includes('antd') || id.includes('@ant-design')) {
+      //           return 'ant-design-vendor';
+      //         }
+      //         return 'vendor';
+      //       }
+      //     },
+      //   },
+      // },
       assetsDir: 'assets',
       cssCodeSplit: true,
     },
