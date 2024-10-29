@@ -4,7 +4,7 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import imp from 'vite-plugin-imp';
 import {visualizer} from 'rollup-plugin-visualizer';
-import * as proxy from 'identity-obj-proxy';
+// import * as proxy from 'identity-obj-proxy';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -42,9 +42,9 @@ export default defineConfig(({mode}) => {
       globals: true,
       environment: 'jsdom',
       setupFiles: './tests/setup.ts',
+      css: false,
       mock: {
-        '\\.module\\.scss$': proxy,
-        '\\.scss$': proxy,
+        '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
       },
     },
     server: {

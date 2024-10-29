@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MenuItem Component > matches the snapshot 1`] = `
+<DocumentFragment>
+  <li>
+    <a
+      class="_link_9fe8fa"
+      href="/test-route"
+    >
+      Test Label
+    </a>
+  </li>
+</DocumentFragment>
+`;
