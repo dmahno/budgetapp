@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TapButton Component > matches snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="_button_242c51 _primary_242c51"
+  >
+    <div
+      class="_iconWrapper_242c51"
+    >
+      <svg
+        data-testid="icon"
+        fill="none"
+        height="36"
+        viewBox="0 0 36 36"
+        width="36"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M19.5 9C19.5 8.17157 18.8284 7.5 18 7.5C17.1716 7.5 16.5 8.17157 16.5 9V16.5H9C8.17157 16.5 7.5 17.1716 7.5 18C7.5 18.8284 8.17157 19.5 9 19.5H16.5V27C16.5 27.8284 17.1716 28.5 18 28.5C18.8284 28.5 19.5 27.8284 19.5 27V19.5H27C27.8284 19.5 28.5 18.8284 28.5 18C28.5 17.1716 27.8284 16.5 27 16.5H19.5V9Z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="_textWrapper_242c51"
+    >
+      Snapshot Button
+    </div>
+  </button>
+</DocumentFragment>
+`;

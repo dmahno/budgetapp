@@ -1,8 +1,6 @@
-// @use 'assets/styles/fonts';
+@use 'assets/styles/fonts';
 @use 'assets/styles/mobile';
 @use 'assets/variables/colors';
-
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap'); // временно так нельзя
 
 * {
   box-sizing: border-box;
@@ -13,7 +11,7 @@ body {
   margin: 0;
   padding: 0;
   size: 16px;
-  font-family: 'Golos', sans-serif;
+  font-family: 'Golos Text', serif;
   background: var(--backgroundColor);
   color: var(--textColor);
 }

@@ -13,7 +13,13 @@ export const ThemeSwitcher = observer(() => {
       onClick={toggleTheme}
       size="s"
       appearance="thirdly"
-      icon={isDark ? <Dark /> : <Light />}
+      icon={
+        isDark ? (
+          <Dark data-testid="dark-icon" />
+        ) : (
+          <Light data-testid="light-icon" />
+        )
+      }
     />
   );
 });

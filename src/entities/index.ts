@@ -1,5 +1,5 @@
 export {UserWelcome} from './UserWelcome/UserWelcome';
-export {ThemeSwitcher} from './ThemeSwither/ThemeSwither';
+export {ThemeSwitcher} from './ThemeSwitcher/ThemeSwitcher';
 export {NavigationMenu} from './NavigationMenu/NavigationMenu';
 export {UserInfo} from './UserInfo/UserInfo';
 export {FadeInWelcome} from './FadeInWelcome/FadeInWelcome';

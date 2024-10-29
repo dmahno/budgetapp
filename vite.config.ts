@@ -4,6 +4,7 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import imp from 'vite-plugin-imp';
 import {visualizer} from 'rollup-plugin-visualizer';
+import proxy from 'identity-obj-proxy';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -37,11 +38,21 @@ export default defineConfig(({mode}) => {
     define: {
       __APP_BASE_URL__: JSON.stringify(baseUrl),
     },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './tests/setup.ts',
+      mock: {
+        '\\.module\\.scss$': proxy,
+        '\\.scss$': proxy,
+      },
+    },
     server: {
       host: true,
     },
     resolve: {
       alias: {
+        '\\.svg$': path.resolve(__dirname, 'tests/__mocks__/svgrMock.tsx'),
         '@': path.resolve(__dirname, './src'),
         app: path.resolve(__dirname, './src/app'),
         entities: path.resolve(__dirname, './src/entities'),
