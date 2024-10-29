@@ -12,8 +12,8 @@ export const FadeInWelcome = observer(() => {
   const firstName = userName ? userName.split(' ')[0] : '';
 
   return (
-    <div className={styles.fadeInWelcome} role="alert" aria-live="assertive">
-      <h1>
+    <div className={styles.fadeInWelcome}>
+      <h1 className={styles.title}>
         {getGreetingTime()}
         {firstName && `, ${firstName}`}! <br /> Входим в приложение.
       </h1>

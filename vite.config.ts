@@ -4,7 +4,6 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import imp from 'vite-plugin-imp';
 import {visualizer} from 'rollup-plugin-visualizer';
-// import * as proxy from 'identity-obj-proxy';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';

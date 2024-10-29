@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FadeInWelcome > matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_fadeInWelcome_270f4f"
+  >
+    <h1
+      class="_title_270f4f"
+    >
+      Добрый день, Дмитрий! 
+      <br />
+       Входим в приложение.
+    </h1>
+  </div>
+</DocumentFragment>
+`;

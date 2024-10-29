@@ -9,12 +9,19 @@
   align-items: center;
   justify-content: center;
   color: #fff;
+  background: linear-gradient(
+      135deg,
+      rgb(249, 214, 88) 0%,
+      rgb(73, 110, 11) 55.725%,
+      rgb(102, 79, 27) 91.603%
+    ),
+    rgb(255, 255, 255);
   font-size: 2rem;
-  opacity: 1; /* Start hidden */
-  animation: fadeInOut 3s forwards; /* Total duration: 3s */
+  opacity: 1;
+  animation: fadeInOut 3s forwards;
   overflow: hidden;
+  padding: $indent-m;
 
-  /* Pseudo-element for blurred background */
   &::before {
     content: '';
     position: absolute;
@@ -38,5 +45,13 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+.title {
+  font-weight: 600;
+  font-size: 44px;
+  @include mobile {
+    font-size: 32px;
   }
 }

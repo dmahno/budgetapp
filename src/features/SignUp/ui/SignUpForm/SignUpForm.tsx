@@ -22,6 +22,7 @@ export const SignUpForm = observer(() => {
     isLoginInvalid,
     isPasswordInvalid,
     isFormValid,
+    resetForm,
   } = authStore;
   const navigate = useNavigate();
 
@@ -32,6 +33,7 @@ export const SignUpForm = observer(() => {
   const handleSignUp = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signUp(() => {
+      resetForm();
       navigate(LOGIN_PAGE_LINK);
     });
   };
