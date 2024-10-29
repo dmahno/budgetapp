@@ -1,6 +1,8 @@
-@use 'assets/styles/fonts';
+// @use 'assets/styles/fonts';
 @use 'assets/styles/mobile';
 @use 'assets/variables/colors';
+
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap'); // временно так нельзя
 
 * {
   box-sizing: border-box;
