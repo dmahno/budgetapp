@@ -7,10 +7,9 @@ import styles from './Header.module.scss';
 
 export const Header = observer(() => {
   return (
-    <header className={styles.header}>
-      <Logo />
-      {/* <NavigationMenu /> */}
-      <UserInfo />
+    <header data-testid="header" className={styles.header}>
+      <Logo data-testid="logo-image"/>
+      <UserInfo data-testid="user-info" />
     </header>
   );
 });

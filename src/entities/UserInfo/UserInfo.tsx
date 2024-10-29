@@ -15,7 +15,7 @@ export const UserInfo = observer(() => {
   const userAvatar = avatarKey ? images[avatarKey] : '';
 
   return (
-    <div className={styles.userInfo}>
+    <div data-testid="user-info" className={styles.userInfo}>
       <ThemeSwitcher />
       <div className={styles.userAvatar}>
         {userAvatar && <img src={userAvatar} alt={`${user?.userNameInfo}`} />}
