@@ -1,6 +1,6 @@
-@use 'assets/styles/fonts';
-@use 'assets/styles/mobile';
-@use 'assets/variables/colors';
+@use 'assets/styles/fonts' as *;
+@use 'assets/styles/mobile' as *;
+@use 'assets/variables/colors' as *;
 
 * {
   box-sizing: border-box;

@@ -4,7 +4,7 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import imp from 'vite-plugin-imp';
 import {visualizer} from 'rollup-plugin-visualizer';
-import proxy from 'identity-obj-proxy';
+import * as proxy from 'identity-obj-proxy';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -52,7 +52,6 @@ export default defineConfig(({mode}) => {
     },
     resolve: {
       alias: {
-        '\\.svg$': path.resolve(__dirname, 'tests/__mocks__/svgrMock.tsx'),
         '@': path.resolve(__dirname, './src'),
         app: path.resolve(__dirname, './src/app'),
         entities: path.resolve(__dirname, './src/entities'),
@@ -87,6 +86,15 @@ export default defineConfig(({mode}) => {
       chunkSizeWarningLimit: 1000,
       assetsDir: 'assets',
       cssCodeSplit: true,
+    },
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('src/shared/ui/')) {
+            return 'shared-ui';
+          }
+        },
+      },
     },
     optimizeDeps: {
       include: [

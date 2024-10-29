@@ -39,6 +39,7 @@ export default tseslint.config(
         'warn',
         {allowConstantExport: true},
       ],
+      'import/no-cycle': [2, {maxDepth: 1}],
       'import/order': [
         'error',
         {
