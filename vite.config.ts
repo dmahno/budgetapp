@@ -21,6 +21,7 @@ const excludedFiles: string[] = [
   'routes.tsx',
   '**/constants/**',
   '**/__mocks__/**',
+  'src/shared/theme/*',
   'menuLinks.ts',
 ];
 

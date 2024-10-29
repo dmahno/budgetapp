@@ -74,22 +74,20 @@ export const Input: React.FC<IInputProps> = observer(
 
     const shouldLabelBeActive = isFocused || inputValue.length > 0;
     const isActive = isFocused || inputValue.length > 0;
+    const inputId = `${label}-input`;
 
     return (
       <div
         className={`${styles.inputWrapper} ${styles[customSize]} ${
           bordered ? styles.bordered : ''
-        } ${disabled ? styles.disabled : ''} ${
-          isActive ? styles.hasContent : ''
-        }`}
+        } ${disabled ? styles.disabled : ''} ${isActive ? styles.hasContent : ''}`}
         style={{width}}
       >
         <input
+          id={inputId}
           name={label}
           type={password && !isPasswordVisible ? 'password' : 'text'}
-          className={`${styles.inputField} ${
-            loading ? styles.loading : ''
-          } ${isActive ? styles.focused : ''}`}
+          className={`${styles.inputField} ${loading ? styles.loading : ''} ${isActive ? styles.focused : ''}`}
           value={inputValue}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -99,31 +97,41 @@ export const Input: React.FC<IInputProps> = observer(
         />
         {label && (
           <label
-            className={`${styles.label} ${
-              shouldLabelBeActive ? styles.labelActive : ''
-            }`}
+            htmlFor={inputId}
+            className={`${styles.label} ${shouldLabelBeActive ? styles.labelActive : ''}`}
           >
             {label}
           </label>
         )}
-
         <div className={styles.inputIcons}>
-          {loading && <Spinner size="s" className={styles.loadingIcon} />}
+          {loading && (
+            <Spinner
+              size="s"
+              data-testid="spinner"
+              className={styles.loadingIcon}
+            />
+          )}
           {clearable && inputValue.length > 0 && (
-            <span className={styles.clearIcon} onClick={handleClearInput}>
+            <span
+              data-testid="ClearIcon"
+              className={styles.clearIcon}
+              onClick={handleClearInput}
+              aria-label="Clear input"
+            >
               <ClearIcon />
             </span>
           )}
           {password && (
             <span
+              data-testid="IconToogle"
               className={styles.passwordToggle}
               onClick={handleTogglePassword}
+              aria-label="Toggle password visibility"
             >
               {isPasswordVisible ? <EyeIcon /> : <HideIcon />}
             </span>
           )}
         </div>
-
         {showCount && (
           <span className={styles.charCount}>
             {inputValue?.toString().length || 0}

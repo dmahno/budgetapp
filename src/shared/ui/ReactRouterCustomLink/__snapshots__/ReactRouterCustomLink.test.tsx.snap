@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ReactRouterCustomLink > matches the snapshot 1`] = `
+<DocumentFragment>
+  <a
+    class="ant-typography css-dev-only-do-not-override-ni1kz0"
+  />
+</DocumentFragment>
+`;
