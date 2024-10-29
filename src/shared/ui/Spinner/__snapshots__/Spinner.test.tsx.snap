@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Spinner > applies additional className if provided 1`] = `
+<div>
+  <div
+    class="_spinner_b6745b _m_b6745b _light_b6745b custom-class"
+    data-testid="spinner"
+  />
+</div>
+`;
+
+exports[`Spinner > renders with custom size "l" and mode "light" 1`] = `
+<div>
+  <div
+    class="_spinner_b6745b _l_b6745b _light_b6745b"
+    data-testid="spinner"
+  />
+</div>
+`;
+
+exports[`Spinner > renders with custom size "s" and mode "dark" 1`] = `
+<div>
+  <div
+    class="_spinner_b6745b _s_b6745b _dark_b6745b"
+    data-testid="spinner"
+  />
+</div>
+`;
+
+exports[`Spinner > renders with default props 1`] = `
+<div>
+  <div
+    class="_spinner_b6745b _m_b6745b _light_b6745b"
+    data-testid="spinner"
+  />
+</div>
+`;

@@ -67,15 +67,19 @@ export const Button: React.FC<IButtonProps> = ({
       {...props}
     >
       {loading ? (
-        <Spinner size="s" mode="dark" />
+        <Spinner size="s" mode="dark" data-testid="spinner" />
       ) : (
         <>
           {icon && iconAlign === 'left' && (
-            <span className={styles.icon}>{icon}</span>
+            <span data-testid="icon" className={styles.icon}>
+              {icon}
+            </span>
           )}
           {children}
           {icon && iconAlign === 'right' && (
-            <span className={styles.icon}>{icon}</span>
+            <span data-testid="icon" className={styles.icon}>
+              {icon}
+            </span>
           )}
         </>
       )}

@@ -5,6 +5,25 @@ import svgr from 'vite-plugin-svgr';
 import imp from 'vite-plugin-imp';
 import {visualizer} from 'rollup-plugin-visualizer';
 
+const excludedFiles: string[] = [
+  '**/index.ts',
+  '**/dist/**',
+  '**/node_modules/**',
+  'eslint.config.js',
+  'vite.config.ts',
+  'commitlint.config.cjs',
+  '**/types/**',
+  '**/*.async.tsx',
+  'src/main.tsx',
+  'src/setupTests.ts',
+  'src/app/App.tsx',
+  'src/app/Routes/routes.tsx',
+  'routes.tsx',
+  '**/constants/**',
+  '**/__mocks__/**',
+  'menuLinks.ts',
+];
+
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
   const baseUrl = isProduction ? '/budgetapp/' : '/';
@@ -42,10 +61,15 @@ export default defineConfig(({mode}) => {
       environment: 'jsdom',
       setupFiles: './tests/setup.ts',
       css: false,
+      exclude: excludedFiles,
+      coverage: {
+        exclude: excludedFiles,
+      },
       mock: {
         '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
       },
     },
+
     server: {
       host: true,
     },

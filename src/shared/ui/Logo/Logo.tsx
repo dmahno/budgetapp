@@ -10,6 +10,6 @@ export const Logo = () => (
     disableAntColor
     to={MAIN_PAGE_LINK}
   >
-    <LogoImage />
+    <LogoImage data-testid="logo-image" />
   </ReactRouterCustomLink>
 );

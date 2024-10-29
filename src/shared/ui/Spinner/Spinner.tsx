@@ -19,6 +19,7 @@ export const Spinner: React.FC<Partial<ISpinnerProps>> = ({
 }) => {
   return (
     <div
+      data-testid="spinner"
       className={classNames(
         styles.spinner,
         styles[size],
