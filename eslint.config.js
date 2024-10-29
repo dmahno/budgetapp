@@ -6,7 +6,15 @@ import tseslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
-  {ignores: ['dist', 'vite.config.ts', 'vitest.config.ts', 'src/types/']},
+  {
+    ignores: [
+      'dist',
+      'vite.config.ts',
+      'vitest.config.ts',
+      'src/types/',
+      'coverage',
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
