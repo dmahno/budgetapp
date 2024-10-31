@@ -7,6 +7,7 @@ import {EmptyState} from 'shared/ui';
 import {financeStore} from '../../model/store/FinanceStore';
 import {TransactionList} from '../TransactionList/TransactionList';
 import {LastTransaction} from '../LastTransaction/LastTransaction';
+import {FiltersArea} from '../FiltersArea/FiltersArea';
 import styles from './TransactionHistory.module.scss';
 
 export const TransactionHistory = observer(() => {
@@ -51,6 +52,7 @@ export const TransactionHistory = observer(() => {
         })}
       >
         <h2>История транзакций</h2>
+        <FiltersArea />
         {operationsList.length > 0 ? (
           <>
             <Tabs
