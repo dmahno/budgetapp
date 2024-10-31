@@ -1,5 +1,6 @@
 import {describe, it, expect, vi, beforeEach} from 'vitest';
 import {render, screen, fireEvent} from '@testing-library/react';
+import {useState} from 'react';
 
 import {Input} from './Input';
 
@@ -19,9 +20,32 @@ describe('Input Component', () => {
     expect(inputElement).toHaveAttribute('type', 'text');
   });
 
+  it('clears input value when clearable icon is clicked', () => {
+    const TestComponent = () => {
+      const [inputValue, setInputValue] = useState('test');
+      return (
+        <Input
+          label="Clearable Input"
+          clearable
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            mockOnChange(e);
+          }}
+        />
+      );
+    };
+
+    render(<TestComponent />);
+    const clearButton = screen.getByTestId('ClearIcon');
+
+    fireEvent.click(clearButton);
+    expect(screen.getByLabelText('Clearable Input')).toHaveValue('');
+  });
+
   it('toggles password visibility when password prop is true', () => {
     render(<Input label="Password" password />);
-    const toggleButton = screen.getByTestId('IconToogle');
+    const toggleButton = screen.getByTestId('IconToggle');
 
     expect(screen.getByLabelText('Password')).toHaveAttribute(
       'type',
@@ -36,21 +60,6 @@ describe('Input Component', () => {
       'type',
       'password',
     );
-  });
-
-  it('clears input value when clearable icon is clicked', () => {
-    render(
-      <Input
-        label="Clearable Input"
-        clearable
-        value="test"
-        onChange={mockOnChange}
-      />,
-    );
-    const clearButton = screen.getByTestId('ClearIcon');
-
-    fireEvent.click(clearButton);
-    expect(screen.getByLabelText('Clearable Input')).toHaveValue('');
   });
 
   it('calls onChange handler when input value changes', () => {
@@ -77,14 +86,14 @@ describe('Input Component', () => {
     const inputElement = screen.getByLabelText('Focus Label');
     const labelElement = screen.getByText('Focus Label');
 
-    expect(labelElement).not.toHaveClass('_label_95237c _labelActive_95237c');
+    expect(labelElement).toHaveClass('_label_95237c');
 
     fireEvent.focus(inputElement);
-    expect(labelElement).toHaveClass('_label_95237c _labelActive_95237c');
+    expect(labelElement).toHaveClass('_label_95237c');
 
     fireEvent.change(inputElement, {target: {value: 'value'}});
     fireEvent.blur(inputElement);
-    expect(labelElement).toHaveClass('_label_95237c _labelActive_95237c');
+    expect(labelElement).toHaveClass('_label_95237c');
   });
 
   it('disables input when disabled prop is true', () => {

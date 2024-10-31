@@ -62,7 +62,7 @@ class AuthStore {
       runInAction(() => {
         this.isWelcome = false;
       });
-    }, 5000);
+    }, 3000);
   });
 
   setUserName = action((value: string) => {

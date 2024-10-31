@@ -75,10 +75,9 @@ export class FinanceStore {
     description: string,
   ) {
     if (type === 'exclude' && amount > this.totalSum) {
-      message.error(
-        `Недостаточно средств. Максимальная сумма для списания: ${this.totalSum} ₽`,
+      throw new Error(
+        `Вы не можете списать сумму больше, чем у вас в кошельке. Максимальная сумма для списания: ${this.totalSum.toLocaleString('ru-RU')} ₽`,
       );
-      return;
     }
 
     try {
@@ -111,7 +110,7 @@ export class FinanceStore {
       }
     } catch (error) {
       console.error('Failed to add operation:', error);
-      message.error('Не удалось добавить операцию.');
+      throw new Error('Не удалось добавить операцию.');
     }
   }
 
@@ -121,7 +120,7 @@ export class FinanceStore {
       await database.delete(STORE_OPERATIONS_NAME, operationId);
       runInAction(() => {
         const deletedOperation = this.operationsList.find(
-          (op) => op.id === operationId,
+          (operation) => operation.id === operationId,
         );
         this.operationsList = this.operationsList.filter(
           (operation) => operation.id !== operationId,
@@ -199,9 +198,9 @@ export class FinanceStore {
   private findLatestOperation(): IOperation | null {
     if (this.operationsList.length === 0) return null;
     let latest = this.operationsList[0];
-    for (const op of this.operationsList) {
-      if (op.date > latest.date) {
-        latest = op;
+    for (const operation of this.operationsList) {
+      if (operation.date > latest.date) {
+        latest = operation;
       }
     }
     return latest;

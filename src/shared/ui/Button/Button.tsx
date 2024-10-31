@@ -67,7 +67,11 @@ export const Button: React.FC<IButtonProps> = ({
       {...props}
     >
       {loading ? (
-        <Spinner size="s" mode="dark" data-testid="spinner" />
+        <Spinner
+          size="s"
+          mode={disabled ? 'light' : 'dark'}
+          data-testid="spinner"
+        />
       ) : (
         <>
           {icon && iconAlign === 'left' && (

@@ -59,8 +59,8 @@ export const SignUpForm = observer(() => {
       </h1>
       <form className={styles.form} onSubmit={handleSignUp}>
         <Input
+          autoComplete="off"
           label="Логин"
-          autoComplete="none"
           value={login}
           onChange={onInputLoginChange}
         />
@@ -70,6 +70,7 @@ export const SignUpForm = observer(() => {
 
         <Input
           label="Имя пользователя"
+          autoComplete="off"
           value={userName}
           onChange={onInputUserNameChange}
         />
@@ -77,7 +78,7 @@ export const SignUpForm = observer(() => {
         <Input
           label="Пароль"
           password
-          autoComplete="none"
+          autoComplete="off"
           value={password}
           onChange={onInputPasswordChange}
         />

@@ -63,7 +63,7 @@ describe('AuthStore', () => {
     authStore.setUserName('New User');
 
     await authStore.signUp(onSuccess);
-    await waitForAsync(); // Wait for async operation
+    await waitForAsync();
 
     expect(localStorage.getItem('signupLogin')).toBe('hashed-newuser');
     expect(notification.success).toHaveBeenCalledWith({
@@ -75,7 +75,7 @@ describe('AuthStore', () => {
 
   it('should show error for existing login during signup', async () => {
     const onSuccess = vi.fn();
-    localStorage.setItem('signupLogin', 'hashed-newuser'); // Set up existing login
+    localStorage.setItem('signupLogin', 'hashed-newuser');
 
     authStore.setLogin('newuser');
     await authStore.signUp(onSuccess);

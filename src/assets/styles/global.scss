@@ -6,19 +6,20 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  size: 16px;
-  font-family: 'Golos Text', serif;
-  background: var(--backgroundColor);
-  color: var(--textColor);
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  size: 16px;
+  font-family: 'Golos Text', serif;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
   min-width: 320px;
-  padding: 0 $indent-s;
 }
 
 @include mobile {
@@ -69,14 +70,20 @@ input:-webkit-autofill:focus {
     color 0s 600000s !important;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 button {
   background-color: var(--buttonBackgroundColor);
   color: var(--buttonTextColor);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-}
-
-html {
-  scroll-behavior: smooth;
 }

@@ -12,7 +12,7 @@ export const LastTransaction = observer(() => {
   const lastOperation = financeStore.lastOperation;
 
   if (!lastOperation) {
-    return <div>Нет транзакций</div>;
+    return null;
   }
 
   const {date, amount, category, type, description} = lastOperation;

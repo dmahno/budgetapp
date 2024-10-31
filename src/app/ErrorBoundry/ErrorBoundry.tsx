@@ -1,15 +1,18 @@
 import {Component, ErrorInfo, ReactNode} from 'react';
-
 interface IProps {
   children: ReactNode;
 }
 
 interface IState {
   hasError: boolean;
+  error?: Error;
 }
 
 class ErrorBoundary extends Component<IProps, IState> {
-  state: IState = {hasError: false};
+  constructor(props: IProps) {
+    super(props);
+    this.state = {hasError: false};
+  }
 
   static getDerivedStateFromError(): IState {
     return {hasError: true};
@@ -17,14 +20,18 @@ class ErrorBoundary extends Component<IProps, IState> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
+    this.setState({error});
   }
 
   render() {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+    const {hasError, error} = this.state;
+    const {children} = this.props;
+
+    if (hasError) {
+      return <div>{`${error?.toString()} `} </div>;
     }
 
-    return this.props.children;
+    return children;
   }
 }
 

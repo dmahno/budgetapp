@@ -37,6 +37,6 @@
 
 .headerTitle {
   padding: $indent-s;
-  background-color: $lightGrey;
+  background-color: var(--transactionHistoryDaysBackgroundColor);
   border-radius: 12px;
 }

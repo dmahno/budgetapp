@@ -18,7 +18,7 @@
     "test:coverage": "vitest run --coverage",
     "prettier": "npx prettier . --write",
     "lint": "eslint --config eslint.config.js .",
-    "snap": "vitest run --update"
+    "snap": "vitest run -u"
   },
   "dependencies": {
     "@types/dateformat": "^5.0.2",

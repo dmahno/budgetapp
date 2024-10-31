@@ -11,11 +11,15 @@
 
 .transactionHistory {
   position: relative;
-  background-color: #fff;
+  background-color: var(--transactionHistoryBackgroundColor);
   margin-top: 92px;
   padding: $indent-m;
   border-radius: 24px;
-  z-index: 2;
+  z-index: 20;
+  &.initial {
+    text-align: center;
+    margin-top: 0;
+  }
   @include mobile {
     padding: $indent-s;
   }
@@ -41,7 +45,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px;
-  background-color: #f9f9f9;
   border-radius: 4px;
 }
 

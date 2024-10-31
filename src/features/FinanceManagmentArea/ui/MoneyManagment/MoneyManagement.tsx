@@ -1,152 +1,160 @@
 import {observer} from 'mobx-react-lite';
-import {useState} from 'react';
-import {Modal, Button, Input, message, Select} from 'antd';
+import {useEffect, useRef, useState} from 'react';
+import {message, Select, Input, InputNumber} from 'antd';
 
-import {TapButton} from 'shared/ui';
+import {Modal, TapButton} from 'shared/ui';
+import DropdowmIcon from 'shared/assets/icons/down.svg';
 
 import {categories} from '../../model/constants/categories';
-import {financeStore} from '../../model/store/FinanceStore';
+import {financeStore, TTransaction} from '../../model/store/FinanceStore';
 import styles from './MoneyManagement.module.scss';
 
-const {Option} = Select;
+interface IModalStateProps {
+  visible: boolean;
+  type: TTransaction | null;
+  sum: number;
+  category: string;
+  description: string;
+}
+
+const modalInitialState = {
+  visible: false,
+  type: null,
+  sum: 0,
+  category: 'other',
+  description: '',
+};
 
 export const MoneyManagement = observer(() => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalType, setModalType] = useState<'add' | 'extract' | null>(null);
-  const [sum, setSum] = useState<number>(0);
-  const [category, setCategory] = useState<string>('other');
-  const [description, setDescription] = useState<string>('');
+  const [modalState, setModalState] =
+    useState<IModalStateProps>(modalInitialState);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const showAddModal = () => {
-    setModalType('add');
-    setIsModalVisible(true);
-    setSum(0);
-    setCategory('other');
-    setDescription('');
-  };
+  useEffect(() => {
+    if (modalState.visible && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [modalState.visible]);
 
-  const showExtractModal = () => {
-    setModalType('extract');
-    setIsModalVisible(true);
-    setSum(0);
-    setCategory('other');
-    setDescription('');
+  const openModal = (type: TTransaction) => {
+    setModalState({
+      visible: true,
+      type,
+      sum: 0,
+      category: 'other',
+      description: '',
+    });
   };
 
   const handleOk = async () => {
-    if (sum > 0) {
-      if (modalType === 'add') {
+    const {sum, type, category, description} = modalState;
+    if (sum > 0 && type) {
+      const amountOperation = type === 'add' ? 'Пополнение' : 'Списание';
+      try {
         await financeStore.addOperation(
           sum,
-          'Пополнение',
-          'add',
+          amountOperation,
+          type,
           category,
           description,
         );
-        message.success(`Сумма ${formatSum(sum)} добавлена`);
-      } else if (modalType === 'extract') {
-        await financeStore.addOperation(
-          sum,
-          'Списание',
-          'exclude',
-          category,
-          description,
+        message.success(
+          `Сумма ${sum.toLocaleString('ru-RU')} ${
+            type === 'add' ? 'добавлена' : 'списана'
+          }`,
         );
-        message.success(`Сумма ${formatSum(sum)} списана`);
+        handleCancel();
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error('Failed to add operation:', error);
+          message.error(
+            error.message || 'Произошла ошибка при добавлении операции.',
+          );
+        }
       }
-      setIsModalVisible(false);
-      setSum(0);
-      setCategory('other');
-      setDescription('');
     } else {
-      message.error('Пожалуйста, введите корректную сумму');
+      message.error('Пожалуйста, введите корректную сумму.');
     }
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
-    setSum(0);
-    setCategory('other');
-    setDescription('');
+    setModalState((prevState) => ({
+      ...prevState,
+      visible: false,
+    }));
   };
 
-  const formatSum = (value: number) => {
-    return value.toLocaleString('ru-RU');
-  };
-
-  const incrementSum = () => setSum((prevSum) => prevSum + 1000);
-  const decrementSum = () => setSum((prevSum) => Math.max(0, prevSum - 1000));
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = Number(e.target.value.replace(/\D/g, ''));
-    setSum(inputValue);
+  const handleInputChange = (value: number | null) => {
+    setModalState((prevState) => ({...prevState, sum: value || 0}));
   };
 
   const handleCategoryChange = (value: string) => {
-    setCategory(value);
+    setModalState((prevState) => ({...prevState, category: value}));
   };
 
   const handleDescriptionChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
-    setDescription(e.target.value);
+    setModalState((prevState) => ({
+      ...prevState,
+      description: e.target.value,
+    }));
   };
 
   return (
     <>
       <div className={styles.buttons}>
-        <TapButton text="Пополнить" onClick={showAddModal} />
-        <TapButton
-          text="Списать"
-          appearance="secondary"
-          onClick={showExtractModal}
-        />
+        <TapButton text="Пополнить" onClick={() => openModal('add')} />
+        {financeStore.totalSum > 0 && (
+          <TapButton
+            text="Списать"
+            appearance="secondary"
+            onClick={() => openModal('exclude')}
+          />
+        )}
       </div>
       <Modal
-        title={modalType === 'add' ? 'Пополнить счет' : 'Списать средства'}
-        open={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        disabled={modalState.sum === 0}
+        title={
+          modalState.type === 'add' ? 'Пополнить счет' : 'Списать средства'
+        }
+        isOpen={modalState.visible}
+        onAdd={handleOk}
+        addButtonText={modalState.type === 'add' ? 'Пополнить' : 'Списать'}
+        onClose={handleCancel}
+        footer
       >
         <div className={styles.amountDisplay}>
-          <span className={styles.amount}>{formatSum(sum)} ₽</span>
+          <span className={styles.amount}>
+            {modalState.sum.toLocaleString('ru-RU')} ₽
+          </span>
         </div>
 
-        <Input
-          type="text"
-          value={sum > 0 ? formatSum(sum) : ''}
+        <InputNumber
+          ref={inputRef}
           placeholder="Введите сумму"
+          value={modalState.sum}
           onChange={handleInputChange}
-          className={styles.inputField}
         />
 
         <Select
-          value={category}
+          suffixIcon={<DropdowmIcon />}
+          value={modalState.category}
           onChange={handleCategoryChange}
           className={styles.selectCategory}
-          style={{width: '100%', marginTop: '16px'}}
         >
           {categories.map((cat) => (
-            <Option key={cat.value} value={cat.value}>
+            <Select.Option key={cat.value} value={cat.value}>
               {cat.label}
-            </Option>
+            </Select.Option>
           ))}
         </Select>
 
         <Input.TextArea
-          value={description}
           placeholder="Введите описание"
+          value={modalState.description}
           onChange={handleDescriptionChange}
-          className={styles.textareaField}
-          style={{marginTop: '16px'}}
         />
-
-        <div className={styles.controls}>
-          <Button onClick={decrementSum} disabled={sum <= 0}>
-            -
-          </Button>
-          <Button onClick={incrementSum}>+</Button>
-        </div>
       </Modal>
     </>
   );

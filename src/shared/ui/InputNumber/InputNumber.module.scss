@@ -1,0 +1,123 @@
+.inputWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 16px;
+  padding: 16px;
+  border: 2px solid transparent;
+  background-color: var(--inputBgColor);
+  transition:
+    background-color 0.2s ease-in,
+    border 0.2s ease;
+
+  &.s {
+    font-size: 14px;
+    padding: 12px 8px 8px 8px;
+  }
+
+  &.m {
+    font-size: 16px;
+    padding: 16px;
+    height: 72px;
+  }
+
+  &.bordered {
+    border: 1px solid black;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.hasContent {
+    background-color: transparent;
+    border: 2px solid var(--inputBorderColor);
+    transition:
+      background-color 0.2s ease,
+      border 0.2s ease;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &:hover {
+    background-color: var(--inputBgHover);
+  }
+}
+
+.inputField {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  padding: 24px 16px 0 0;
+
+  font-size: inherit;
+  transition: padding-bottom 0.2s ease;
+
+  &.loading {
+    padding-right: 24px;
+  }
+
+  &.focused {
+    align-items: flex-end;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  font-size: 16px;
+  color: var(--inputLabelColor);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
+
+  &.labelActive {
+    top: 28px;
+    font-size: 12px;
+    transform: translateY(-100%);
+  }
+}
+
+.passwordToggle,
+.clearIcon {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.clearIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.charCount {
+  font-size: 14px;
+  color: var(--inputChartText);
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 16px;
+  margin-left: 8px;
+  border-left: 1px solid var(--borderVerticalSeperator);
+  min-width: 50px;
+}
+
+.loadingIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.inputIcons {
+  display: flex;
+  align-items: center;
+}

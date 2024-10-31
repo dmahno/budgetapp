@@ -1,0 +1,83 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(48, 57, 66, 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal {
+  background-color: var(--modalBackgroundColor);
+  padding: $indent-m;
+  border-radius: 16px;
+  max-width: 600px;
+  max-height: 640px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: modalIn 0.3s ease-out forwards;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.description {
+}
+
+.closeButton {
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-xs;
+  margin: $indent-m 0;
+  flex-grow: 1;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}

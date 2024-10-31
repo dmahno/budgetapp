@@ -9,13 +9,14 @@
   width: auto;
   transition: all 0.3s ease;
 
-  &.loading {
-    cursor: progress;
+  &:disabled {
+    background-color: var(--disabledButtonStateBackgroundColor);
+    color: var(--disabledButtonStateTextColor);
+    cursor: not-allowed;
   }
 
-  &.disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
+  &.loading {
+    cursor: progress;
   }
 
   &.fullWidth {
@@ -43,7 +44,7 @@
   background-color: var(--buttonPrimaryBackgroundColor);
   color: var(--buttonPrimaryTextcolor);
 
-  &:hover {
+  &:hover:not([disabled]) {
     background-color: var(--buttonPrimaryBackgroundColorHover);
   }
 }
@@ -58,11 +59,11 @@
 }
 
 .appearance-thirdly {
-  background-color: var(--thirdly-color);
-  color: #fff;
+  background-color: var(--buttonThirdlyBackgroundColor);
+  color: var(--buttonThirdlyTextcolor);
 
   &:hover {
-    background-color: var(--thirdly-hover);
+    background-color: var(--buttonThirdlyBackgroundColorHover);
   }
 }
 

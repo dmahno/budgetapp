@@ -1,0 +1,21 @@
+.emptyState {
+  margin-top: $indent-s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.emptyStateText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #7f8da2;
+}
+.title {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.description {
+  margin-top: $indent-xs;
+  font-size: 14px;
+}

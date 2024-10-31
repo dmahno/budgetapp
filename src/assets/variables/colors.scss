@@ -2,11 +2,18 @@
   --primary: #4422ef;
   --secondary: #aef21e;
 
-  --backgroundColor: #fff;
+  --backgroundColor: #ffffff;
 
   --textColor: #303540;
   --linkColor: #4422ef;
   --iconColor: #303540;
+
+  --transactionHistoryBackgroundColor: #ffffff;
+  --transactionHistoryDaysBackgroundColor: #efeef4;
+
+  --disabledButtonStateBackgroundColor: #f2f3f5;
+  --disabledButtonStateTextColor: #8e91a2;
+
   --buttonPrimaryBackgroundColor: #4422ef;
   --buttonPrimaryTextcolor: #fafafa;
   --buttonPrimaryBackgroundColorHover: #2c12b1;
@@ -15,10 +22,13 @@
   --buttonSecondaryTextcolor: #0d0d0d;
   --buttonSecondaryBackgroundColorHover: #a2e318;
 
-  // --buttonPrimaryBackgroundColor: #ffe500;
-  // --buttonSecondaryColor: #ffffff;
-  // --buttonSecondaryBackgroundColor: #9c32ce;
-  --buttonTextColor: #0d0d0d;
+  --buttonThirdlyBackgroundColor: #f4f4f4;
+  --buttonThirdlyTextcolor: #0d0d0d;
+  --buttonThirdlyBackgroundColorHover: #efefef;
+
+  --modalBackgroundColor: #ffffff;
+
+  --buttonTextColor: #4422ef;
   --borderColor: #e8e9ec;
   --borderVerticalSeperator: #626269;
 
@@ -42,7 +52,12 @@
 /* Dark Theme Overrides */
 body.dark-theme {
   /* Dark Theme Variables */
-  --backgroundColor: #070f18;
+  --backgroundColor: #0b141f;
+
+  --transactionHistoryBackgroundColor: #050409;
+  --transactionHistoryDaysBackgroundColor: #1e1f2a;
+
+  --modalBackgroundColor: #0b141f;
 
   --textColor: #fafafa;
   --linkColor: #ffe500;
